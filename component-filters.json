@@ -19,6 +19,12 @@
     ]
   },
   {
+    "id": "aryan",
+    "components": [
+      "aryan-project"
+    ]
+  },
+  {
     "id": "cards",
     "components": [
       "card"

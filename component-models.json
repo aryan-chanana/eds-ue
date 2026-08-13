@@ -142,6 +142,37 @@
     ]
   },
   {
+    "id": "aryan",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "userName",
+        "label": "User Name",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "id": "aryan-project",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "projectName",
+        "label": "Project Name",
+        "value": ""
+      },
+      {
+        "component": "text",
+        "valueType": "number",
+        "name": "duration",
+        "label": "Duration (months)",
+        "value": ""
+      }
+    ]
+  },
+  {
     "id": "card",
     "fields": [
       {

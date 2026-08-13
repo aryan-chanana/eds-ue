@@ -83,6 +83,37 @@
       "id": "blocks",
       "components": [
         {
+          "title": "Aryan",
+          "id": "aryan",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Aryan",
+                  "model": "aryan",
+                  "filter": "aryan"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Project",
+          "id": "aryan-project",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Project",
+                  "model": "aryan-project"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Cards",
           "id": "cards",
           "plugins": {
