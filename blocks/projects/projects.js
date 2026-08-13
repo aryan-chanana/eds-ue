@@ -5,7 +5,7 @@ export default function decorate(block) {
   const [headingRow, ...projectRows] = rows;
 
   const heading = document.createElement('h2');
-  heading.className = 'aryan-heading';
+  heading.className = 'projects-heading';
   if (headingRow) {
     moveInstrumentation(headingRow, heading);
     const value = headingRow.textContent.trim();
@@ -14,23 +14,23 @@ export default function decorate(block) {
   }
 
   const ul = document.createElement('ul');
-  ul.className = 'aryan-cards';
+  ul.className = 'projects-cards';
   projectRows.forEach((row) => {
     const [nameCell, durationCell] = [...row.children];
     const name = nameCell ? nameCell.textContent.trim() : '';
     const rawDuration = durationCell ? durationCell.textContent.trim() : '';
     const duration = Number.parseInt(rawDuration, 10);
     const li = document.createElement('li');
-    li.className = 'aryan-card';
+    li.className = 'projects-card';
     moveInstrumentation(row, li);
 
     const nameEl = document.createElement('h3');
-    nameEl.className = 'aryan-card-name';
+    nameEl.className = 'projects-card-name';
     nameEl.textContent = name;
     if (nameCell) moveInstrumentation(nameCell, nameEl);
 
     const durationEl = document.createElement('p');
-    durationEl.className = 'aryan-card-duration';
+    durationEl.className = 'projects-card-duration';
     if (Number.isFinite(duration)) {
       const label = duration === 1 ? 'month' : 'months';
       durationEl.textContent = `${duration} ${label}`;

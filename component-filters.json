@@ -8,7 +8,6 @@
   {
     "id": "section",
     "components": [
-      "aryan",
       "text",
       "image",
       "button",
@@ -17,12 +16,6 @@
       "cards",
       "columns",
       "fragment"
-    ]
-  },
-  {
-    "id": "aryan",
-    "components": [
-      "aryan-project"
     ]
   },
   {
@@ -44,6 +37,12 @@
       "image",
       "button",
       "title"
+    ]
+  },
+  {
+    "id": "projects",
+    "components": [
+      "project"
     ]
   }
 ]
