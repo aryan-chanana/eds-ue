@@ -40,7 +40,8 @@
           "component": "text",
           "valueType": "string",
           "name": "userName",
-          "label": "User Name"
+          "label": "User Name",
+          "value": ""
         }
       ]
     },
@@ -51,13 +52,15 @@
           "component": "text",
           "valueType": "string",
           "name": "projectName",
-          "label": "Project Name"
+          "label": "Project Name",
+          "value": ""
         },
         {
           "component": "text",
           "valueType": "number",
           "name": "duration",
-          "label": "Duration (months)"
+          "label": "Duration (months)",
+          "value": ""
         }
       ]
     }
