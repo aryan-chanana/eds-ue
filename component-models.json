@@ -243,6 +243,13 @@
         "name": "duration",
         "label": "Duration (months)",
         "value": ""
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "isSolo",
+        "label": "Solo Project?",
+        "value": false
       }
     ]
   }
