@@ -8,6 +8,7 @@
   {
     "id": "section",
     "components": [
+      "aryan",
       "text",
       "image",
       "button",
