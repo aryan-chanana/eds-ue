@@ -239,15 +239,6 @@
     scroll-snap-align: start;
   }
 
-  .explore-range .explore-range-card-ctas {
-    flex-direction: row;
-    justify-content: center;
-  }
-
-  .explore-range .explore-range-card-cta {
-    flex: 1;
-  }
-
   .explore-range .explore-range-carousel-arrow {
     position: absolute;
     top: 50%;

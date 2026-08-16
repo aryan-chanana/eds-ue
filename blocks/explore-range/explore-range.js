@@ -1,6 +1,19 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
+function pickImage(cell) {
+  if (!cell) return null;
+  const picture = cell.querySelector('picture');
+  if (picture) return picture;
+  const img = cell.querySelector('img');
+  if (img) {
+    const optimized = createOptimizedPicture(img.src, img.alt || '', false, [{ width: '750' }]);
+    moveInstrumentation(img, optimized.querySelector('img'));
+    return optimized;
+  }
+  return null;
+}
+
 function decorateCta(anchor, variant) {
   if (!anchor) return null;
   const label = (anchor.textContent || '').trim();
@@ -22,12 +35,8 @@ function buildCard(row) {
 
   const media = document.createElement('div');
   media.className = 'explore-range-card-image';
-  const img = imageCell?.querySelector('img');
-  if (img) {
-    const optimized = createOptimizedPicture(img.src, img.alt || '', false, [{ width: '750' }]);
-    moveInstrumentation(img, optimized.querySelector('img'));
-    media.append(optimized);
-  }
+  const picture = pickImage(imageCell);
+  if (picture) media.append(picture);
 
   const body = document.createElement('div');
   body.className = 'explore-range-card-body';
@@ -136,7 +145,9 @@ export default function decorate(block) {
       const first = track.querySelector('.explore-range-card');
       if (!first) return track.clientWidth;
       const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
-      return first.offsetWidth + gap;
+      const cardWidth = first.offsetWidth + gap;
+      const visible = Math.max(1, Math.round((track.clientWidth + gap) / cardWidth));
+      return cardWidth * visible;
     };
     const updateArrows = () => {
       if (!isCarouselActive()) {
