@@ -35,7 +35,7 @@
   font-family: inherit;
   font-weight: 500;
   font-size: 15px;
-  padding: 12px 40px;
+  padding: 12px 20px;
   border-radius: 0;
   cursor: pointer;
   transition: background-color 0.25s ease, color 0.25s ease;
@@ -214,7 +214,7 @@
 
   .explore-range .explore-range-tab {
     font-size: 16px;
-    padding: 14px 56px;
+    padding: 14px 28px;
   }
 
   .explore-range .explore-range-carousel {
@@ -305,7 +305,7 @@
   }
 
   .explore-range .explore-range-tab {
-    padding: 14px 72px;
+    padding: 14px 36px;
   }
 
   .explore-range .explore-range-track {
