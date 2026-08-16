@@ -158,25 +158,38 @@ export default function decorate(block) {
       const centerY = imageRect.top - carouselRect.top + imageRect.height / 2;
       carousel.style.setProperty('--explore-range-arrow-top', `${centerY}px`);
     };
-    const updateArrows = () => {
+    let targetScroll = null;
+    const applyArrowState = (scroll) => {
       positionArrows();
       if (!isCarouselActive()) {
         prev.hidden = true;
         next.hidden = true;
         return;
       }
-      const canScroll = track.scrollWidth - track.clientWidth > 1;
-      if (!canScroll) {
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      if (maxScroll <= 1) {
         prev.hidden = true;
         next.hidden = true;
         return;
       }
-      prev.hidden = track.scrollLeft <= 1;
-      next.hidden = track.scrollLeft + track.clientWidth >= track.scrollWidth - 1;
+      prev.hidden = scroll <= 1;
+      next.hidden = scroll >= maxScroll - 1;
     };
-    prev.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
-    next.addEventListener('click', () => track.scrollBy({ left: step(), behavior: 'smooth' }));
-    track.addEventListener('scroll', updateArrows, { passive: true });
+    const updateArrows = () => applyArrowState(targetScroll ?? track.scrollLeft);
+    const goBy = (delta) => {
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      targetScroll = Math.max(0, Math.min(maxScroll, track.scrollLeft + delta));
+      applyArrowState(targetScroll);
+      track.scrollTo({ left: targetScroll, behavior: 'smooth' });
+    };
+    prev.addEventListener('click', () => goBy(-step()));
+    next.addEventListener('click', () => goBy(step()));
+    track.addEventListener('scroll', () => {
+      if (targetScroll !== null && Math.abs(track.scrollLeft - targetScroll) < 2) {
+        targetScroll = null;
+      }
+      updateArrows();
+    }, { passive: true });
     window.addEventListener('resize', updateArrows);
     track.querySelectorAll('img').forEach((img) => {
       if (img.complete) return;
