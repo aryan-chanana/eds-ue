@@ -149,7 +149,16 @@ export default function decorate(block) {
       const visible = Math.max(1, Math.round((track.clientWidth + gap) / cardWidth));
       return cardWidth * visible;
     };
+    const positionArrows = () => {
+      const image = track.querySelector('.explore-range-card-image');
+      if (!image) return;
+      const carouselRect = carousel.getBoundingClientRect();
+      const imageRect = image.getBoundingClientRect();
+      const centerY = imageRect.top - carouselRect.top + imageRect.height / 2;
+      carousel.style.setProperty('--explore-range-arrow-top', `${centerY}px`);
+    };
     const updateArrows = () => {
+      positionArrows();
       if (!isCarouselActive()) {
         prev.hidden = true;
         next.hidden = true;
