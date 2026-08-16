@@ -216,7 +216,7 @@
   }
 
   .explore-range .explore-range-carousel {
-    padding: 0 44px;
+    padding: 0;
   }
 
   .explore-range .explore-range-track {
@@ -277,7 +277,7 @@
   }
 
   .explore-range .explore-range-carousel-prev {
-    left: 12px;
+    left: 20px;
   }
 
   .explore-range .explore-range-carousel-prev svg {
@@ -285,11 +285,11 @@
   }
 
   .explore-range .explore-range-carousel-next {
-    right: 12px;
+    right: 20px;
   }
 }
 
-@media (width >= 900px) {
+@media (width >= 1200px) {
   .explore-range {
     padding: 72px 40px;
   }
@@ -305,10 +305,6 @@
 
   .explore-range .explore-range-tab {
     padding: 14px 72px;
-  }
-
-  .explore-range .explore-range-carousel {
-    padding: 0 56px;
   }
 
   .explore-range .explore-range-track {

@@ -91,6 +91,7 @@ export default function decorate(block) {
 
   const tabs = [];
   const tabPanels = [];
+  const updaters = [];
   [...groups.entries()].forEach(([label, cards], index) => {
     const tabId = `explore-range-tab-${index}`;
     const panelId = `explore-range-panel-${index}`;
@@ -177,6 +178,11 @@ export default function decorate(block) {
     next.addEventListener('click', () => track.scrollBy({ left: step(), behavior: 'smooth' }));
     track.addEventListener('scroll', updateArrows, { passive: true });
     window.addEventListener('resize', updateArrows);
+    track.querySelectorAll('img').forEach((img) => {
+      if (img.complete) return;
+      img.addEventListener('load', updateArrows, { once: true });
+    });
+    updaters.push(updateArrows);
     requestAnimationFrame(updateArrows);
   });
 
@@ -188,6 +194,7 @@ export default function decorate(block) {
       tabPanels[i].hidden = !selected;
     });
     tabs[nextIndex].focus();
+    requestAnimationFrame(() => updaters[nextIndex]?.());
   };
 
   tabs.forEach((tab, index) => {
