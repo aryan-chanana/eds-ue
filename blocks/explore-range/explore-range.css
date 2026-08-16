@@ -17,10 +17,11 @@
 }
 
 .explore-range .explore-range-tablist {
-  display: inline-flex;
+  display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 4px;
+  max-width: 480px;
   margin: 0 auto 32px;
   padding: 0;
   background-color: transparent;
@@ -35,6 +36,7 @@
   font-family: inherit;
   font-weight: 500;
   font-size: 15px;
+  flex: 1;
   padding: 12px 20px;
   border-radius: 0;
   cursor: pointer;
