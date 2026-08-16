@@ -17,11 +17,10 @@
 }
 
 .explore-range .explore-range-tablist {
-  display: flex;
+  display: inline-flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 4px;
-  max-width: 480px;
   margin: 0 auto 32px;
   padding: 0;
   background-color: transparent;
