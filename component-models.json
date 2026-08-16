@@ -215,38 +215,17 @@
         "valueType": "string"
       },
       {
-        "component": "text",
-        "name": "title",
-        "label": "Car Name",
-        "description": "Model name shown above the description (e.g. SELTOS).",
+        "component": "richtext",
+        "name": "text",
+        "label": "Body",
+        "description": "Car name as an H3 heading (e.g. SELTOS) followed by the description paragraph.",
         "valueType": "string"
       },
       {
         "component": "richtext",
-        "name": "text",
-        "label": "Description",
-        "valueType": "string"
-      },
-      {
-        "component": "aem-content",
-        "name": "cta1",
-        "label": "Primary CTA Link"
-      },
-      {
-        "component": "text",
-        "name": "cta1Text",
-        "label": "Primary CTA Text",
-        "valueType": "string"
-      },
-      {
-        "component": "aem-content",
-        "name": "cta2",
-        "label": "Secondary CTA Link"
-      },
-      {
-        "component": "text",
-        "name": "cta2Text",
-        "label": "Secondary CTA Text",
+        "name": "ctas",
+        "label": "CTAs",
+        "description": "Add up to two links. The first becomes the primary button, the second becomes the secondary button.",
         "valueType": "string"
       }
     ]

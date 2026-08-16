@@ -1,8 +1,7 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
-function buildCta(cell, variant) {
-  const anchor = cell?.querySelector('a');
+function decorateCta(anchor, variant) {
   if (!anchor) return null;
   const label = (anchor.textContent || '').trim();
   const href = anchor.getAttribute('href') || '';
@@ -13,14 +12,7 @@ function buildCta(cell, variant) {
 }
 
 function buildCard(row) {
-  const [
-    tabCell,
-    imageCell,
-    titleCell,
-    textCell,
-    cta1Cell,
-    cta2Cell,
-  ] = [...row.children];
+  const [tabCell, imageCell, textCell, ctasCell] = [...row.children];
 
   const tabLabel = (tabCell?.textContent || '').trim();
 
@@ -40,14 +32,6 @@ function buildCard(row) {
   const body = document.createElement('div');
   body.className = 'explore-range-card-body';
 
-  const title = (titleCell?.textContent || '').trim();
-  if (title) {
-    const h3 = document.createElement('h3');
-    h3.className = 'explore-range-card-title';
-    h3.textContent = title;
-    body.append(h3);
-  }
-
   if (textCell && textCell.innerHTML.trim()) {
     const desc = document.createElement('div');
     desc.className = 'explore-range-card-text';
@@ -55,8 +39,9 @@ function buildCard(row) {
     body.append(desc);
   }
 
-  const cta1 = buildCta(cta1Cell, 'primary');
-  const cta2 = buildCta(cta2Cell, 'secondary');
+  const anchors = ctasCell ? [...ctasCell.querySelectorAll('a')] : [];
+  const cta1 = decorateCta(anchors[0], 'primary');
+  const cta2 = decorateCta(anchors[1], 'secondary');
   if (cta1 || cta2) {
     const ctas = document.createElement('div');
     ctas.className = 'explore-range-card-ctas';
