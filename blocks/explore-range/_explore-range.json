@@ -1,0 +1,117 @@
+{
+  "definitions": [
+    {
+      "title": "Explore Range",
+      "id": "explore-range",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Explore Range",
+              "model": "explore-range",
+              "filter": "explore-range"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Explore Range Card",
+      "id": "explore-range-card",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Card",
+              "model": "explore-range-card"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "explore-range",
+      "fields": [
+        {
+          "component": "text",
+          "name": "heading",
+          "label": "Heading",
+          "description": "Section heading shown above the tabs (e.g. Explore The Range).",
+          "valueType": "string"
+        }
+      ]
+    },
+    {
+      "id": "explore-range-card",
+      "fields": [
+        {
+          "component": "text",
+          "name": "tabLabel",
+          "label": "Tab Label",
+          "description": "Cards sharing the same Tab Label are grouped into one tab (e.g. SUV, MPV, EV).",
+          "valueType": "string"
+        },
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image",
+          "label": "Image",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "name": "imageAlt",
+          "label": "Alt Text",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "name": "title",
+          "label": "Car Name",
+          "description": "Model name shown above the description (e.g. SELTOS).",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "name": "text",
+          "label": "Description",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "name": "cta1",
+          "label": "Primary CTA Link"
+        },
+        {
+          "component": "text",
+          "name": "cta1Text",
+          "label": "Primary CTA Text",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "name": "cta2",
+          "label": "Secondary CTA Link"
+        },
+        {
+          "component": "text",
+          "name": "cta2Text",
+          "label": "Secondary CTA Text",
+          "valueType": "string"
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "explore-range",
+      "components": [
+        "explore-range-card"
+      ]
+    }
+  ]
+}

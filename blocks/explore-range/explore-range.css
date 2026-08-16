@@ -1,0 +1,330 @@
+.explore-range {
+  padding: 40px 16px;
+  background-color: #f5f0e8;
+  font-family: var(--body-font-family);
+  color: #05141f;
+  text-align: center;
+}
+
+.explore-range .explore-range-heading {
+  margin: 0 0 32px;
+  font-family: var(--heading-font-family);
+  font-size: 34px;
+  line-height: 1.15;
+  font-weight: 700;
+  text-align: center;
+  color: #05141f;
+}
+
+.explore-range .explore-range-tablist {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px;
+  margin: 0 auto 32px;
+  padding: 0;
+  background-color: transparent;
+  border-radius: 0;
+}
+
+.explore-range .explore-range-tab {
+  appearance: none;
+  border: 0;
+  background-color: #d9d9d9;
+  color: #05141f;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 12px 40px;
+  border-radius: 0;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.explore-range .explore-range-tab:hover {
+  background-color: #c9c9c9;
+}
+
+.explore-range .explore-range-tab[aria-selected="true"] {
+  background-color: #05141f;
+  color: #fff;
+}
+
+.explore-range .explore-range-tab:focus-visible {
+  outline: 2px solid #05141f;
+  outline-offset: 3px;
+}
+
+.explore-range .explore-range-panels {
+  text-align: left;
+}
+
+.explore-range .explore-range-panel[hidden] {
+  display: none;
+}
+
+.explore-range .explore-range-panel {
+  animation: explore-range-fade 0.3s ease both;
+}
+
+.explore-range .explore-range-carousel {
+  position: relative;
+}
+
+.explore-range .explore-range-track {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.explore-range .explore-range-card {
+  background-color: #dcdcdc;
+  border-radius: 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.explore-range .explore-range-card-image {
+  line-height: 0;
+}
+
+.explore-range .explore-range-card-image img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+.explore-range .explore-range-card-body {
+  padding: 20px 12px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.explore-range .explore-range-card-title {
+  margin: 0;
+  font-family: var(--heading-font-family);
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #05141f;
+  line-height: 1.15;
+}
+
+.explore-range .explore-range-card-text {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #333;
+}
+
+.explore-range .explore-range-card-text h1,
+.explore-range .explore-range-card-text h2,
+.explore-range .explore-range-card-text h3,
+.explore-range .explore-range-card-text h4,
+.explore-range .explore-range-card-text strong {
+  display: block;
+  margin: 0 0 12px;
+  font-family: var(--heading-font-family);
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #05141f;
+  line-height: 1.15;
+}
+
+.explore-range .explore-range-card-text p {
+  margin: 0 0 8px;
+}
+
+.explore-range .explore-range-card-text p:last-child {
+  margin-bottom: 0;
+}
+
+.explore-range .explore-range-card-ctas {
+  margin-top: auto;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.explore-range .explore-range-card-cta {
+  display: inline-block;
+  text-decoration: none;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 14px 24px;
+  text-align: center;
+  background-color: #05141f;
+  color: #fff;
+  border: 0;
+  border-radius: 0;
+  transition: background-color 0.25s ease;
+}
+
+.explore-range .explore-range-card-cta:hover,
+.explore-range .explore-range-card-cta:focus-visible {
+  background-color: #1a2b38;
+  outline: none;
+}
+
+.explore-range .explore-range-carousel-arrow {
+  display: none;
+}
+
+@keyframes explore-range-fade {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (width >= 600px) {
+  .explore-range {
+    padding: 56px 32px;
+  }
+
+  .explore-range .explore-range-heading {
+    font-size: 42px;
+    margin-bottom: 36px;
+  }
+
+  .explore-range .explore-range-tablist {
+    gap: 6px;
+    margin-bottom: 40px;
+  }
+
+  .explore-range .explore-range-tab {
+    font-size: 16px;
+    padding: 14px 56px;
+  }
+
+  .explore-range .explore-range-carousel {
+    padding: 0 44px;
+  }
+
+  .explore-range .explore-range-track {
+    flex-direction: row;
+    gap: 24px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-bottom: 4px;
+  }
+
+  .explore-range .explore-range-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .explore-range .explore-range-card {
+    flex: 0 0 calc((100% - 24px) / 2);
+    scroll-snap-align: start;
+  }
+
+  .explore-range .explore-range-card-ctas {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .explore-range .explore-range-card-cta {
+    flex: 1;
+  }
+
+  .explore-range .explore-range-carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border-radius: 50%;
+    border: 1px solid #05141f;
+    background-color: transparent;
+    color: #05141f;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  }
+
+  .explore-range .explore-range-carousel-arrow svg {
+    width: 20px;
+    height: 20px;
+    display: block;
+  }
+
+  .explore-range .explore-range-carousel-arrow[hidden] {
+    display: none;
+  }
+
+  .explore-range .explore-range-carousel-arrow:hover,
+  .explore-range .explore-range-carousel-arrow:focus-visible {
+    background-color: #05141f;
+    color: #fff;
+    border-color: #05141f;
+    outline: none;
+  }
+
+  .explore-range .explore-range-carousel-prev {
+    left: 0;
+  }
+
+  .explore-range .explore-range-carousel-prev svg {
+    transform: rotate(180deg);
+  }
+
+  .explore-range .explore-range-carousel-next {
+    right: 0;
+  }
+}
+
+@media (width >= 900px) {
+  .explore-range {
+    padding: 72px 40px;
+  }
+
+  .explore-range .explore-range-heading {
+    font-size: 48px;
+    margin-bottom: 40px;
+  }
+
+  .explore-range .explore-range-tablist {
+    gap: 8px;
+  }
+
+  .explore-range .explore-range-tab {
+    padding: 14px 72px;
+  }
+
+  .explore-range .explore-range-carousel {
+    padding: 0 56px;
+  }
+
+  .explore-range .explore-range-track {
+    gap: 28px;
+  }
+
+  .explore-range .explore-range-card {
+    flex: 0 0 calc((100% - 2 * 28px) / 3);
+  }
+}
