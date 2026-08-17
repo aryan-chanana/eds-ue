@@ -17,29 +17,37 @@ function anchorHref(cell) {
   return cell?.querySelector('a')?.getAttribute('href') || '';
 }
 
+function flattenCells(rows) {
+  if (rows.length === 0) return [];
+  if (rows.length === 1) return [...rows[0].children];
+  return rows.map((r) => r.firstElementChild || r);
+}
+
 function parseNavItem(itemBlock) {
-  const rows = [...itemBlock.children];
-  const parentRow = rows.find((r) => !r.classList.contains('nav-link'));
-  const linkRows = rows.filter((r) => r.classList.contains('nav-link'));
-  const cells = parentRow ? [...parentRow.children] : [];
+  const linkRows = [...itemBlock.querySelectorAll(':scope > .nav-link, :scope > * > .nav-link')];
+  const linkSet = new Set(linkRows);
+  const parentRows = [...itemBlock.children].filter((r) => !linkSet.has(r) && !r.querySelector(':scope > .nav-link'));
+  const cells = flattenCells(parentRows);
+  const links = linkRows.map((row) => {
+    const inner = [...row.children];
+    const linkCells = flattenCells(inner);
+    return {
+      text: textOf(linkCells[0]),
+      href: anchorHref(linkCells[1]) || '#',
+    };
+  });
   return {
     label: textOf(cells[0]),
     href: anchorHref(cells[1]) || '#',
     bannerPicture: cells[2]?.querySelector('picture') || cells[2]?.querySelector('img'),
     bannerLabel: textOf(cells[3]),
-    links: linkRows.map((row) => {
-      const linkCells = [...row.children];
-      return {
-        text: textOf(linkCells[0]),
-        href: anchorHref(linkCells[1]) || '#',
-      };
-    }),
+    links,
   };
 }
 
 function parseNavTools(toolsBlock) {
-  const row = [...toolsBlock.children].find((r) => !r.classList.contains('nav-link'));
-  const cells = row ? [...row.children] : [];
+  const rows = [...toolsBlock.children].filter((r) => !r.classList.contains('nav-link'));
+  const cells = flattenCells(rows);
   return {
     dealerLabel: textOf(cells[0]) || 'Find a Dealer',
     dealerHref: anchorHref(cells[1]) || '#',
@@ -205,6 +213,9 @@ export default async function decorate(block) {
   const rightItems = (navItemSections[1] ? [...navItemSections[1].querySelectorAll('.nav-item')] : []).map(parseNavItem);
   const toolsBlock = fragment.querySelector('.nav-tools');
   const tools = toolsBlock ? parseNavTools(toolsBlock) : { dealerLabel: 'Find a Dealer', dealerHref: '#' };
+
+  // eslint-disable-next-line no-console
+  console.debug('[header] parsed nav:', { leftItems, rightItems, tools });
 
   block.textContent = '';
   block.classList.add('kia-header-block');
