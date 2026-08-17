@@ -8,7 +8,7 @@
 
 main > .section > .explore-range-wrapper{
   max-width: 1400px;
-  padding: 0px 0px;
+  padding: 0;
 }
 
 .explore-range .explore-range-heading {

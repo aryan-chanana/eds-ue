@@ -47,6 +47,16 @@
     ]
   },
   {
+    "id": "nav-item",
+    "components": [
+      "nav-link"
+    ]
+  },
+  {
+    "id": "nav-tools",
+    "components": []
+  },
+  {
     "id": "projects",
     "components": [
       "project"

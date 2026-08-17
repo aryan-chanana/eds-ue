@@ -1,0 +1,39 @@
+{
+  "definitions": [
+    {
+      "title": "Nav Link",
+      "id": "nav-link",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Nav Link",
+              "model": "nav-link"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "nav-link",
+      "fields": [
+        {
+          "component": "text",
+          "name": "text",
+          "label": "Text",
+          "description": "Label shown in the dropdown (e.g. SONET).",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "name": "href",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "filters": []
+}
