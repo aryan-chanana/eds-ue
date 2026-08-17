@@ -16,7 +16,9 @@
       "cards",
       "columns",
       "fragment",
-      "explore-range"
+      "explore-range",
+      "nav-item",
+      "nav-tools"
     ]
   },
   {
