@@ -58,9 +58,9 @@ header:has(.kia-header) {
   left: 0;
   right: 0;
   z-index: 1000;
-  background: transparent;
-  color: #fff;
-  transition: background-color 0.25s var(--kia-ease), color 0.25s var(--kia-ease);
+  background-color: #fff;
+  color: #000;
+  transition: box-shadow 0.25s var(--kia-ease);
 }
 
 .kia-header::before {
@@ -69,23 +69,15 @@ header:has(.kia-header) {
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 0;
-  border-bottom: 1px solid;
-  opacity: 0.2;
+  border-bottom: 1px solid rgb(0 0 0 / 10%);
 }
 
-.kia-header:hover,
 .kia-header.scrolled {
-  background-color: #fff;
-  color: #000;
+  box-shadow: 0 2px 14px rgb(0 0 0 / 12%);
 }
 
 .header-main {
-  transition: background 0.35s var(--kia-ease), box-shadow 0.35s var(--kia-ease);
-}
-
-.kia-header.scrolled .header-main {
-  box-shadow: 0 2px 14px rgb(0 0 0 / 15%);
+  transition: box-shadow 0.35s var(--kia-ease);
 }
 
 .header-inner {
@@ -126,12 +118,6 @@ header:has(.kia-header) {
   left: 0;
   width: 100%;
   height: 100%;
-  color: #fff;
-  transition: color 0.25s var(--kia-ease);
-}
-
-.kia-header:hover .home-link .svg-ci,
-.kia-header.scrolled .home-link .svg-ci {
   color: #07141f;
 }
 
@@ -209,15 +195,13 @@ header:has(.kia-header) {
   padding: 12px 0;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(6px);
-  transition: opacity 0.2s var(--kia-ease), transform 0.2s var(--kia-ease), visibility 0.2s;
+  transition: opacity 0.2s var(--kia-ease), visibility 0.2s;
 }
 
 .has-dropdown:hover .dropdown,
 .has-dropdown:focus-within .dropdown {
   opacity: 1;
   visibility: visible;
-  transform: translateY(0);
 }
 
 .dropdown a {
@@ -231,9 +215,10 @@ header:has(.kia-header) {
 .d2-box {
   position: absolute;
   top: 100%;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 10;
-  width: 100%;
+  width: 100vw;
   border-bottom: 1px solid rgb(0 0 0 / 20%);
   background-color: #fff;
   padding: 31px 0 40px;

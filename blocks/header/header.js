@@ -23,17 +23,25 @@ function flattenCells(rows) {
   return rows.map((r) => r.firstElementChild || r);
 }
 
+// A nav-link item row is either:
+//   - a row with class="nav-link" (older xwalk), or
+//   - a row with 2 cells where the 2nd cell contains an anchor (block/item convention).
+function isNavLinkRow(row) {
+  if (row.classList.contains('nav-link')) return true;
+  const cells = [...row.children];
+  return cells.length === 2 && !!cells[1].querySelector('a');
+}
+
 function parseNavItem(itemBlock) {
-  const linkRows = [...itemBlock.querySelectorAll(':scope > .nav-link, :scope > * > .nav-link')];
-  const linkSet = new Set(linkRows);
-  const parentRows = [...itemBlock.children].filter((r) => !linkSet.has(r) && !r.querySelector(':scope > .nav-link'));
+  const rows = [...itemBlock.children];
+  const linkRows = rows.filter(isNavLinkRow);
+  const parentRows = rows.filter((r) => !isNavLinkRow(r));
   const cells = flattenCells(parentRows);
   const links = linkRows.map((row) => {
-    const inner = [...row.children];
-    const linkCells = flattenCells(inner);
+    const [textCell, hrefCell] = [...row.children];
     return {
-      text: textOf(linkCells[0]),
-      href: anchorHref(linkCells[1]) || '#',
+      text: textOf(textCell),
+      href: anchorHref(hrefCell) || '#',
     };
   });
   return {
@@ -46,11 +54,11 @@ function parseNavItem(itemBlock) {
 }
 
 function parseNavTools(toolsBlock) {
-  const rows = [...toolsBlock.children].filter((r) => !r.classList.contains('nav-link'));
+  const rows = [...toolsBlock.children];
   const cells = flattenCells(rows);
   return {
-    dealerLabel: textOf(cells[0]) || 'Find a Dealer',
-    dealerHref: anchorHref(cells[1]) || '#',
+    dealerLabel: textOf(cells[0]),
+    dealerHref: anchorHref(cells[1]),
   };
 }
 
@@ -212,10 +220,15 @@ export default async function decorate(block) {
   const leftItems = (navItemSections[0] ? [...navItemSections[0].querySelectorAll('.nav-item')] : []).map(parseNavItem);
   const rightItems = (navItemSections[1] ? [...navItemSections[1].querySelectorAll('.nav-item')] : []).map(parseNavItem);
   const toolsBlock = fragment.querySelector('.nav-tools');
-  const tools = toolsBlock ? parseNavTools(toolsBlock) : { dealerLabel: 'Find a Dealer', dealerHref: '#' };
+  const tools = toolsBlock ? parseNavTools(toolsBlock) : null;
 
   // eslint-disable-next-line no-console
   console.debug('[header] parsed nav:', { leftItems, rightItems, tools });
+  const firstNavItem = fragment.querySelector('.nav-item');
+  if (firstNavItem) {
+    // eslint-disable-next-line no-console
+    console.debug('[header] first .nav-item outerHTML:', firstNavItem.outerHTML);
+  }
 
   block.textContent = '';
   block.classList.add('kia-header-block');
@@ -270,11 +283,14 @@ export default async function decorate(block) {
   searchBtn.className = 'icon-btn';
   searchBtn.setAttribute('aria-label', 'Search');
   searchBtn.innerHTML = SEARCH_ICON;
-  const dealerA = document.createElement('a');
-  dealerA.className = 'btn-dealer';
-  dealerA.href = tools.dealerHref;
-  dealerA.innerHTML = `<span class="location-icon" aria-hidden="true">${LOCATION_ICON}</span>${tools.dealerLabel}`;
-  actions.append(searchBtn, dealerA);
+  actions.append(searchBtn);
+  if (tools && tools.dealerLabel) {
+    const dealerA = document.createElement('a');
+    dealerA.className = 'btn-dealer';
+    dealerA.href = tools.dealerHref || '#';
+    dealerA.innerHTML = `<span class="location-icon" aria-hidden="true">${LOCATION_ICON}</span>${tools.dealerLabel}`;
+    actions.append(dealerA);
+  }
   headerInner.append(actions);
 
   headerMain.append(headerInner);
