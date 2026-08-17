@@ -8,7 +8,7 @@
 
 main > .section > .explore-range-wrapper{
   max-width: 1400px;
-  padding: 0 auto;
+  padding: 0px 0px;
 }
 
 .explore-range .explore-range-heading {
@@ -47,9 +47,9 @@ main > .section > .explore-range-wrapper{
   transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-.explore-range .explore-range-tab:hover {
+/* .explore-range .explore-range-tab:hover {
   background-color: #c9c9c9;
-}
+} */
 
 .explore-range .explore-range-tab[aria-selected="true"] {
   background-color: #05141f;
