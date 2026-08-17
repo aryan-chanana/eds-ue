@@ -6,7 +6,7 @@
   text-align: center;
 }
 
-.explore-range-wrapper{
+main > .section > .explore-range-wrapper{
   max-width: 1400px;
   padding: 0 auto;
 }
@@ -226,7 +226,7 @@
   }
 
   .explore-range .explore-range-tab:hover{
-    transform: scale(1.1);
+    transform: scale(1.01);
     font-weight: 600;
   }
 
