@@ -267,6 +267,78 @@
     ]
   },
   {
+    "id": "nav-item",
+    "fields": [
+      {
+        "component": "text",
+        "name": "label",
+        "label": "Label",
+        "description": "Top-level nav label (e.g. Cars, Buy, Owners, VR Showroom).",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "name": "href",
+        "label": "Link"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "bannerImage",
+        "label": "Banner Image",
+        "description": "Optional. When set, the dropdown shows this image on the left. Leave empty for a plain link list or a top-level link.",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "bannerImageAlt",
+        "label": "Banner Image Alt Text",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "bannerLabel",
+        "label": "Banner Caption",
+        "description": "Optional caption shown under the banner image.",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "nav-link",
+    "fields": [
+      {
+        "component": "text",
+        "name": "text",
+        "label": "Text",
+        "description": "Label shown in the dropdown (e.g. SONET).",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "name": "href",
+        "label": "Link"
+      }
+    ]
+  },
+  {
+    "id": "nav-tools",
+    "fields": [
+      {
+        "component": "text",
+        "name": "dealerLabel",
+        "label": "Dealer Button Text",
+        "description": "Label for the right-hand dealer CTA (e.g. Find a Dealer).",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "name": "dealerHref",
+        "label": "Dealer Link"
+      }
+    ]
+  },
+  {
     "id": "projects",
     "fields": [
       {

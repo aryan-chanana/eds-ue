@@ -1,272 +1,574 @@
-/* header and nav layout */
-header .nav-wrapper {
-  background-color: var(--background-color);
-  width: 100%;
-  z-index: 2;
-  position: fixed;
+/* stylelint-disable no-descending-specificity */
+
+/* =========================================================
+   Kia India — Header
+   ========================================================= */
+
+:root {
+  --kia-black: #05141f;
+  --kia-header-h: 80px;
+  --kia-header-h-condensed: 80px;
+  --kia-red: #bb162b;
+  --kia-white: #fff;
+  --kia-gray: #6b7684;
+  --kia-line: rgb(255 255 255 / 14%);
+  --kia-ease: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-header nav {
+/* Reserve layout space for the fixed header on any page that mounts this block. */
+header:has(.kia-header) {
+  height: var(--kia-header-h);
+}
+
+.kia-header,
+.kia-header a,
+.kia-header button,
+.kia-header input,
+.mobile-nav,
+.mobile-nav a,
+.mobile-nav button {
+  font-family: Manrope, sans-serif;
   box-sizing: border-box;
-  display: grid;
-  grid-template:
-    'hamburger brand tools' var(--nav-height)
-    'sections sections sections' 1fr / auto 1fr auto;
-  align-items: center;
-  gap: 0 24px;
-  margin: auto;
-  max-width: 1248px;
-  height: var(--nav-height);
-  padding: 0 24px;
-  font-family: var(--body-font-family);
 }
 
-header nav[aria-expanded='true'] {
-  grid-template:
-    'hamburger brand' var(--nav-height)
-    'sections sections' 1fr
-    'tools tools' var(--nav-height) / auto 1fr;
-  overflow-y: auto;
-  min-height: 100dvh;
-}
-
-@media (width >= 900px) {
-  header .nav-wrapper {
-    position: relative;
-  }
-
-  header nav {
-    display: flex;
-    justify-content: space-between;
-    gap: 0 32px;
-    max-width: 1264px;
-    padding: 0 32px;
-  }
-
-  header nav[aria-expanded='true'] {
-    min-height: 0;
-    overflow: visible;
-  }
-}
-
-header nav p {
+.kia-header ul {
+  list-style: none;
   margin: 0;
-  line-height: 1;
+  padding: 0;
 }
 
-header nav a:any-link {
+.kia-header a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.kia-header button {
+  background: none;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+}
+
+/* ============ HEADER SHELL ============ */
+.kia-header {
+  height: var(--kia-header-h);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: transparent;
+  color: #fff;
+  transition: background-color 0.25s var(--kia-ease), color 0.25s var(--kia-ease);
+}
+
+.kia-header::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 0;
+  border-bottom: 1px solid;
+  opacity: 0.2;
+}
+
+.kia-header:hover,
+.kia-header.scrolled {
+  background-color: #fff;
+  color: #000;
+}
+
+.header-main {
+  transition: background 0.35s var(--kia-ease), box-shadow 0.35s var(--kia-ease);
+}
+
+.kia-header.scrolled .header-main {
+  box-shadow: 0 2px 14px rgb(0 0 0 / 15%);
+}
+
+.header-inner {
+  max-width: 1600px;
+  margin: 0 auto;
+  height: var(--kia-header-h);
+  display: flex;
+  align-items: center;
+  padding: 0 32px;
+  gap: 28px;
+  transition: height 0.3s var(--kia-ease);
+}
+
+.kia-header.scrolled .header-inner {
+  height: var(--kia-header-h-condensed);
+}
+
+/* ============ LOGO ============ */
+.kia-header .ci {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  padding-top: 23px;
+  width: 68px;
+  margin-left: -34px;
+}
+
+.kia-header .home-link {
+  position: relative;
+  display: block;
+  height: 0;
+  padding-bottom: 50%;
+}
+
+.kia-header .home-link .svg-ci {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  transition: color 0.25s var(--kia-ease);
+}
+
+.kia-header:hover .home-link .svg-ci,
+.kia-header.scrolled .home-link .svg-ci {
+  color: #07141f;
+}
+
+/* ============ HAMBURGER (mobile only) ============ */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: currentcolor;
+  transition: transform 0.25s var(--kia-ease), opacity 0.25s var(--kia-ease);
+}
+
+/* ============ PRIMARY NAV (desktop) ============ */
+.primary-nav {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  margin-left: 5.6641%;
+  margin-right: 5.6641%;
+}
+
+.primary-nav > div > ul {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.primary-nav > div > ul > li {
+  position: relative;
+}
+
+.primary-nav > div > ul > li > a {
+  display: block;
+  padding: 15px 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s var(--kia-ease), opacity 0.2s var(--kia-ease);
+}
+
+.kia-header.scrolled .primary-nav > div > ul > li > a {
+  padding: 18px 16px;
+}
+
+.primary-nav > div > ul > li > a:hover {
+  border-bottom-color: var(--kia-red);
+}
+
+.header-left,
+.header-right {
+  margin-left: -20px;
+}
+
+/* dropdown */
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 100%;
+  background: #fff;
+  border-top: 2px solid var(--kia-red);
+  box-shadow: 0 12px 24px rgb(0 0 0 / 20%);
+  padding: 12px 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  transition: opacity 0.2s var(--kia-ease), transform 0.2s var(--kia-ease), visibility 0.2s;
+}
+
+.has-dropdown:hover .dropdown,
+.has-dropdown:focus-within .dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown a {
+  display: block;
+  padding: 10px 22px;
+  font-size: 0.875rem;
+  transition: background 0.15s, color 0.15s;
+}
+
+/* d2 mega-menu (banner + link list) */
+.d2-box {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  border-bottom: 1px solid rgb(0 0 0 / 20%);
+  background-color: #fff;
+  padding: 31px 0 40px;
+}
+
+.d2-pad {
+  min-height: 320px;
+  padding-left: 324px;
+  padding-bottom: 50px;
+  position: relative;
+  margin-left: 5.6641%;
+  margin-right: 5.6641%;
+}
+
+.d2-banner {
+  position: absolute;
+  top: 40px;
+  left: 0;
+}
+
+.d2-banner .d2-a {
+  display: block;
+  width: 290px;
+  position: relative;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: #000;
+  font-weight: bold;
+  letter-spacing: 0.005em;
+  font-size: 0.875rem;
+}
+
+.d2-a img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: top;
+}
+
+.d2-list {
+  flex-flow: column wrap;
+  padding-top: 40px;
+  height: 215px;
+  display: flex;
+}
+
+.d2 {
+  width: auto;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.d2 a {
+  padding: 8px 10px;
+  color: #666;
+  font-size: 0.875rem;
+}
+
+/* ============ RIGHT ACTIONS ============ */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-shrink: 0;
+}
+
+.icon-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: currentcolor;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+
+.icon-btn svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.icon-btn:hover {
+  background: rgb(0 0 0 / 8%);
+}
+
+.btn-dealer {
+  position: relative;
+  padding: 9px 18px 9px 30px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.btn-dealer::before {
+  content: '';
+  position: absolute;
+  top: 25%;
+  left: 0;
+  height: 30px;
+  border-left: 1px solid;
+  opacity: 0.2;
+}
+
+.btn-dealer .location-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
   color: currentcolor;
 }
 
-/* hamburger */
-header nav .nav-hamburger {
-  grid-area: hamburger;
-  height: 22px;
+.btn-dealer .location-icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.btn-dealer:hover {
+  background: transparent;
+  color: var(--kia-red);
+}
+
+/* ============ SEARCH PANEL ============ */
+.search-panel {
+  max-height: 0;
+  overflow: hidden;
+  background: var(--kia-black);
+  border-top: 1px solid var(--kia-line);
+  transition: max-height 0.3s var(--kia-ease);
+}
+
+.search-panel.open {
+  max-height: 90px;
+}
+
+.search-panel-inner {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 20px 32px;
   display: flex;
   align-items: center;
+  gap: 16px;
 }
 
-header nav .nav-hamburger button {
-  height: 22px;
-  margin: 0;
+.search-panel-inner input {
+  flex: 1;
+  background: none;
   border: 0;
-  border-radius: 0;
-  padding: 0;
-  background-color: var(--background-color);
-  color: inherit;
-  overflow: initial;
-  text-overflow: initial;
-  white-space: initial;
+  border-bottom: 1px solid var(--kia-line);
+  color: #fff;
+  font-size: 18px;
+  padding: 8px 2px;
+  outline: none;
 }
 
-header nav .nav-hamburger-icon,
-header nav .nav-hamburger-icon::before,
-header nav .nav-hamburger-icon::after {
-  box-sizing: border-box;
-  display: block;
-  position: relative;
-  width: 20px;
+.search-panel-inner input::placeholder {
+  color: #7d8791;
 }
 
-header nav .nav-hamburger-icon::before,
-header nav .nav-hamburger-icon::after {
-  content: '';
-  position: absolute;
-  background: currentcolor;
+.search-panel-inner .icon-btn {
+  color: #fff;
 }
 
-header nav[aria-expanded='false'] .nav-hamburger-icon,
-header nav[aria-expanded='false'] .nav-hamburger-icon::before,
-header nav[aria-expanded='false'] .nav-hamburger-icon::after {
-  height: 2px;
-  border-radius: 2px;
-  background: currentcolor;
+.search-panel-inner .icon-btn:hover {
+  background: rgb(255 255 255 / 10%);
 }
 
-header nav[aria-expanded='false'] .nav-hamburger-icon::before {
-  top: -6px;
-}
-
-header nav[aria-expanded='false'] .nav-hamburger-icon::after {
-  top: 6px;
-}
-
-header nav[aria-expanded='true'] .nav-hamburger-icon {
-  height: 22px;
-}
-
-header nav[aria-expanded='true'] .nav-hamburger-icon::before,
-header nav[aria-expanded='true'] .nav-hamburger-icon::after {
-  top: 3px;
-  left: 1px;
-  transform: rotate(45deg);
-  transform-origin: 2px 1px;
-  width: 24px;
-  height: 2px;
-  border-radius: 2px;
-}
-
-header nav[aria-expanded='true'] .nav-hamburger-icon::after {
-  top: unset;
-  bottom: 3px;
-  transform: rotate(-45deg);
-}
-
-@media (width >= 900px) {
-  header nav .nav-hamburger {
-    display: none;
-    visibility: hidden;
-  }
-}
-
-/* brand */
-header .nav-brand {
-  grid-area: brand;
-  flex-basis: 128px;
-  font-size: var(--heading-font-size-s);
-  font-weight: 700;
-  line-height: 1;
-}
-
-header nav .nav-brand img {
-  width: 128px;
-  height: auto;
-}
-
-/* sections */
-header nav .nav-sections {
-  grid-area: sections;
-  flex: 1 1 auto;
-  display: none;
+/* ============ MOBILE NAV DRAWER ============ */
+.mobile-nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgb(0 0 0 / 50%);
+  opacity: 0;
   visibility: hidden;
+  transition: opacity 0.3s var(--kia-ease), visibility 0.3s;
+  z-index: 1001;
 }
 
-header nav[aria-expanded='true'] .nav-sections {
-  display: block;
+.mobile-nav-overlay.open {
+  opacity: 1;
   visibility: visible;
-  align-self: start;
 }
 
-header nav .nav-sections ul {
-  list-style: none;
-  padding-left: 0;
-  font-size: var(--body-font-size-s);
+.mobile-nav {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  color: #000;
+  transform: translateX(-100%);
+  transition: transform 0.32s var(--kia-ease);
+  z-index: 1002;
+  overflow-y: auto;
 }
 
-header nav .nav-sections ul > li {
+.mobile-nav.open {
+  transform: translateX(0);
+}
+
+.mobile-nav-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px;
+  border-bottom: 1px solid rgb(0 0 0 / 10%);
+  position: relative;
+  margin-left: 8.2667%;
+  margin-right: 8.2667%;
+}
+
+.mobile-nav-header .ci {
+  position: static;
+  padding: 0;
+  margin: 0;
+  width: 68px;
+}
+
+.mobile-nav-header .home-link .svg-ci {
+  color: #07141f;
+}
+
+.mobile-nav-header .icon-btn {
+  color: #000;
+}
+
+.mobile-nav-list li {
+  border-bottom: 1px solid rgb(0 0 0 / 10%);
+  font-size: 1.125rem;
+  font-weight: bold;
+  letter-spacing: 0.005em;
+  padding-left: 8.2667%;
+  padding-right: 8.2667%;
+}
+
+.mobile-nav-link,
+.mobile-nav-link-plain {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 16px 22px 16px 0;
+  font-size: 15px;
   font-weight: 500;
+  text-align: left;
+  color: #000;
+  position: relative;
 }
 
-header nav .nav-sections ul > li > ul {
-  margin-top: 0;
+.mobile-nav-link {
+  position: relative;
 }
 
-header nav .nav-sections ul > li > ul > li {
+.mobile-text::before {
+  content: '+';
+  position: absolute;
+  top: 50%;
+  right: 30px;
+  transform: translateY(-50%);
+  font-size: 20px;
+  line-height: 1;
   font-weight: 400;
 }
 
-@media (width >= 900px) {
-  header nav .nav-sections {
-    display: block;
-    visibility: visible;
-    white-space: nowrap;
-  }
+.has-sub.open .mobile-text::before {
+  content: '\2212';
+}
 
-  header nav[aria-expanded='true'] .nav-sections {
-    align-self: unset;
-  }
+.chevron {
+  display: none;
+}
 
-  header nav .nav-sections .nav-drop {
-    position: relative;
-    padding-right: 16px;
-    cursor: pointer;
-  }
+.mobile-sub {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s var(--kia-ease);
+}
 
-  header nav .nav-sections .nav-drop::after {
-    content: '';
-    display: inline-block;
-    position: absolute;
-    top: 0.5em;
-    right: 2px;
-    transform: rotate(135deg);
-    width: 6px;
-    height: 6px;
-    border: 2px solid currentcolor;
-    border-radius: 0 1px 0 0;
-    border-width: 2px 2px 0 0;
-  }
+.mobile-sub li {
+  padding-left: 0;
+  border: 0;
+  font-weight: 400;
+}
 
-  header nav .nav-sections .nav-drop[aria-expanded='true']::after {
-    top: unset;
-    bottom: 0.5em;
-    transform: rotate(315deg);
-  }
+.mobile-sub li a {
+  padding: 14px 22px;
+  font-size: 1rem;
+  color: #000;
+  display: block;
+}
 
-  header nav .nav-sections ul {
-    display: flex;
-    gap: 24px;
-    margin: 0;
-  }
+.mobile-nav-list li.has-sub.open {
+  background: #eff1f2;
+  padding-bottom: 10px;
+}
 
-  header nav .nav-sections .default-content-wrapper > ul > li {
-    flex: 0 1 auto;
-    position: relative;
-  }
+.mobile-nav-list li.has-sub.open .mobile-nav-link {
+  border-bottom: 1px solid rgb(0 0 0 / 10%);
+}
 
-  header nav .nav-sections .default-content-wrapper > ul > li > ul {
-    display: none;
-    position: relative;
-  }
+.has-sub.open .mobile-sub {
+  max-height: 600px;
+}
 
-  header nav .nav-sections .default-content-wrapper > ul > li[aria-expanded='true'] > ul {
-    display: block;
-    position: absolute;
-    left: -24px;
-    width: 200px;
-    top: 150%;
-    padding: 16px;
-    background-color: var(--light-color);
-    white-space: initial;
-  }
-
-  header nav .nav-sections .default-content-wrapper > ul > li > ul::before {
-    content: '';
-    position: absolute;
-    top: -8px;
-    left: 16px;
-    width: 0;
-    height: 0;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-bottom: 8px solid var(--light-color);
-  }
-
-  header nav .nav-sections .default-content-wrapper > ul > li > ul > li {
-    padding: 8px 0;
+/* ============ RESPONSIVE ============ */
+@media (width <= 1220px) {
+  .primary-nav > div > ul > li > a {
+    padding: 15px 5px;
   }
 }
 
-/* tools */
-header nav .nav-tools {
-  grid-area: tools;
+@media (width <= 1080px) {
+  .primary-nav {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .header-inner {
+    padding: 0 16px;
+    gap: 16px;
+    justify-content: space-between;
+  }
+
+  .btn-dealer {
+    display: none;
+  }
 }
