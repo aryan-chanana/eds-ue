@@ -6,6 +6,11 @@
   text-align: center;
 }
 
+.explore-range-wrapper{
+  max-width: 1400px;
+  padding: 0 auto;
+}
+
 .explore-range .explore-range-heading {
   margin: 0 0 32px;
   font-family: Poppins, sans-serif;
@@ -144,6 +149,8 @@
 }
 
 .explore-range .explore-range-card-text p {
+  color: #666;
+  font-size: 1rem;
   margin: 0 0 8px;
 }
 
@@ -216,6 +223,11 @@
   .explore-range .explore-range-tab {
     font-size: 16px;
     padding: 14px 28px;
+  }
+
+  .explore-range .explore-range-tab:hover{
+    transform: scale(1.1);
+    font-weight: 600;
   }
 
   .explore-range .explore-range-carousel {
@@ -306,7 +318,7 @@
   }
 
   .explore-range .explore-range-tab {
-    padding: 14px 36px;
+    padding: 10px 35px;
   }
 
   .explore-range .explore-range-track {
