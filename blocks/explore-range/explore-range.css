@@ -259,8 +259,8 @@ main > .section > .explore-range-wrapper{
     top: var(--explore-range-arrow-top, 50%);
     transform: translateY(-50%);
     z-index: 2;
-    width: 52px;
-    height: 52px;
+    width: 80px;
+    height: 80px;
     padding: 0;
     border-radius: 50%;
     border: 0;
