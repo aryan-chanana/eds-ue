@@ -314,7 +314,8 @@ export default async function decorate(block) {
   leftWrap.append(leftUl);
   
   let svgKia = document.createElement('div');
-  svgKia.innerHTML=` <div class="ci">
+  leftWrap.className = 'ci';
+  svgKia.innerHTML=`
       <a href="/in/home.html" class="home-link">
         <svg data-name="Kia" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68 34" width="68" height="34" class="svg-ci">
 
@@ -328,8 +329,7 @@ c-0.04,0-0.09,0.02-0.14,0.05l-7.33,4.4c-0.44,0.27-0.75,0.35-1.18,0.35H1.53c-0.71
 c0-1.06,0.24-1.67,1.18-2.24l5.63-3.38C7.21,9.1,7.26,9.09,7.31,9.09c0.09,0,0.13,0.09,0.13,0.28v11.55c0,0.12,0.03,0.18,0.11,0.18
 c0.05,0,0.1-0.03,0.17-0.07L26.73,9.61c0.45-0.27,0.73-0.35,1.25-0.35h10.23c0.71,0,1.18,0.47,1.18,1.18V23.11z"></path>
         </svg>
-      </a>
-    </div>`;
+      </a>`;
   primaryNav.append(svgKia);
   primaryNav.append(leftWrap);
 
