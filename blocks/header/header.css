@@ -155,10 +155,6 @@ header:has(.kia-header) {
   gap: 8px;
 }
 
-.primary-nav > div > ul > li {
-  position: relative;
-}
-
 .primary-nav > div > ul > li > a {
   display: block;
   padding: 15px 20px;
@@ -221,10 +217,10 @@ header:has(.kia-header) {
 .d2-box {
   position: absolute;
   top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
   z-index: 10;
-  width: 100vw;
+  width: auto;
   border-bottom: 1px solid rgb(0 0 0 / 20%);
   background-color: #fff;
   padding: 31px 0 40px;

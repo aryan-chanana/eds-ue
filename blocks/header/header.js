@@ -291,8 +291,18 @@ export default async function decorate(block) {
   const toolsBlock = fragment.querySelector('.nav-tools');
   const tools = toolsBlock ? parseNavTools(toolsBlock) : null;
 
+  const summarize = (items) => items.map((it) => ({
+    label: it.label,
+    hasBanner: !!it.bannerPicture,
+    bannerLabel: it.bannerLabel,
+    linkCount: it.links.length,
+    linksWithImage: it.links.filter((l) => l.picture).length,
+    linkRoles: it.links.map((l) => l.role || 'link'),
+  }));
   // eslint-disable-next-line no-console
-  console.debug('[header] parsed nav:', { leftItems, rightItems, tools });
+  console.debug('[header] parsed nav:', {
+    left: summarize(leftItems), right: summarize(rightItems), tools,
+  });
   const firstNavItem = fragment.querySelector('.nav-item');
   if (firstNavItem) {
     // eslint-disable-next-line no-console
