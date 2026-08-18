@@ -605,7 +605,7 @@ a{
   padding-left: 0;
   font-weight: 400;
 }
-.primary-nav .has-dropdown .dropdown.d2-box .d2-list .d2-column .d2-heading:hover{
+.primary-nav .has-dropdown .dropdown.d2-box .d2-list .d2-column .d2:hover{
   border-bottom-color: var(--kia-red);
 }
 /* ============ RESPONSIVE ============ */
