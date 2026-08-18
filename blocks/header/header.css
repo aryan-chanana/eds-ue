@@ -583,7 +583,7 @@ header:has(.kia-header) {
 }
 
 .mobile-nav-list li.has-sub.open{
-	  max-height: auto;
+	  max-height: fit-content;
 }
  .mobile-nav-link, .mobile-nav-link-plain{
 	  list-style-type: none;
