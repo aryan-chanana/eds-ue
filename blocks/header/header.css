@@ -605,8 +605,8 @@ a{
   padding-left: 0;
   font-weight: 400;
 }
-.primary-nav .has-dropdown .dropdown.d2-box .d2-list .d2-column .d2 a:hover{
-  border-bottom-color: var(--kia-red);
+.primary-nav .has-dropdown .dropdown.d2-box .d2-list .d2-column .d2 a:hover {
+    border-bottom: 2px solid var(--kia-red);
 }
 /* ============ RESPONSIVE ============ */
 @media (width <= 1220px) {
