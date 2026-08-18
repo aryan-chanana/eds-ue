@@ -491,14 +491,6 @@ header:has(.kia-header) {
   color: #000;
 }
 
-.mobile-nav-list li {
-  border-bottom: 1px solid rgb(0 0 0 / 10%);
-  font-size: 1.125rem;
-  font-weight: bold;
-  letter-spacing: 0.005em;
-  padding-left: 8.2667%;
-  padding-right: 8.2667%;
-}
 
 .mobile-nav-link,
 .mobile-nav-link-plain {
@@ -541,6 +533,7 @@ header:has(.kia-header) {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s var(--kia-ease);
+  padding-left: 0px;
 }
 
 .mobile-sub li {
@@ -563,6 +556,7 @@ header:has(.kia-header) {
   font-size: 1rem;
   color: #000;
   display: block;
+  padding-left: 0px;
 }
 
 .mobile-nav-list li.has-sub.open {
@@ -599,6 +593,14 @@ li{
 
 a{
   color: #000 !important;
+}
+.mobile-nav-list li {
+  border-bottom: 1px solid rgb(0 0 0 / 10%);
+  font-size: 1.125rem;
+  font-weight: bold;
+  letter-spacing: 0.005em;
+  padding-left: 8.2667%;
+  padding-right: 8.2667%;
 }
 
 /* ============ RESPONSIVE ============ */
