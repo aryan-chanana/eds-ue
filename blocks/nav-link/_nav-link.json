@@ -24,13 +24,41 @@
           "component": "text",
           "name": "text",
           "label": "Text",
-          "description": "Label shown in the dropdown (e.g. SONET).",
+          "description": "Label shown in the dropdown (e.g. SONET, or a section heading like Service and Maintenance).",
           "valueType": "string"
         },
         {
           "component": "aem-content",
           "name": "href",
-          "label": "Link"
+          "label": "Link",
+          "description": "Where the link points. Leave empty when Role is a heading."
+        },
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image",
+          "label": "Hover Image",
+          "description": "Optional. When set, hovering this link swaps the mega-menu's banner image to this one (used for the Cars-style mega-menu).",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "name": "imageAlt",
+          "label": "Hover Image Alt Text",
+          "valueType": "string"
+        },
+        {
+          "component": "select",
+          "name": "role",
+          "label": "Role",
+          "description": "How this item behaves in the mega-menu.",
+          "valueType": "string",
+          "options": [
+            { "name": "Link", "value": "" },
+            { "name": "Link — start a new column", "value": "break" },
+            { "name": "Heading — style as heading (no link)", "value": "heading" },
+            { "name": "Heading — start a new column", "value": "break-heading" }
+          ]
         }
       ]
     }

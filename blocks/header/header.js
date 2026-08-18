@@ -23,32 +23,44 @@ function flattenCells(rows) {
   return rows.map((r) => r.firstElementChild || r);
 }
 
-// A nav-link item row is either:
-//   - a row with class="nav-link" (older xwalk), or
-//   - a row with 2 cells where the 2nd cell contains an anchor (block/item convention).
-function isNavLinkRow(row) {
-  if (row.classList.contains('nav-link')) return true;
-  const cells = [...row.children];
-  return cells.length === 2 && !!cells[1].querySelector('a');
+function pictureOrImg(cell) {
+  return cell?.querySelector('picture') || cell?.querySelector('img') || null;
 }
 
 function parseNavItem(itemBlock) {
   const rows = [...itemBlock.children];
-  const linkRows = rows.filter(isNavLinkRow);
-  const parentRows = rows.filter((r) => !isNavLinkRow(r));
-  const cells = flattenCells(parentRows);
-  const links = linkRows.map((row) => {
-    const [textCell, hrefCell] = [...row.children];
+  if (rows.length === 0) {
     return {
-      text: textOf(textCell),
-      href: anchorHref(hrefCell) || '#',
+      label: '', href: '#', bannerPicture: null, bannerLabel: '', links: [],
+    };
+  }
+  const row0Cells = [...(rows[0]?.children || [])];
+  let parentCells;
+  let linkStartIdx;
+  if (row0Cells.length >= 3) {
+    // Structure A: parent's fields are cells in row 0
+    parentCells = row0Cells;
+    linkStartIdx = 1;
+  } else {
+    // Structure B: each parent field is its own row (4 fields → 4 rows)
+    parentCells = rows.slice(0, 4).map((r) => r.firstElementChild || r);
+    linkStartIdx = 4;
+  }
+  const linkRows = rows.slice(linkStartIdx);
+  const links = linkRows.map((row) => {
+    const c = [...row.children];
+    return {
+      text: textOf(c[0]),
+      href: anchorHref(c[1]),
+      picture: pictureOrImg(c[2]),
+      role: textOf(c[3]).toLowerCase(),
     };
   });
   return {
-    label: textOf(cells[0]),
-    href: anchorHref(cells[1]) || '#',
-    bannerPicture: cells[2]?.querySelector('picture') || cells[2]?.querySelector('img'),
-    bannerLabel: textOf(cells[3]),
+    label: textOf(parentCells[0]),
+    href: anchorHref(parentCells[1]) || '#',
+    bannerPicture: pictureOrImg(parentCells[2]),
+    bannerLabel: textOf(parentCells[3]),
     links,
   };
 }
@@ -62,14 +74,31 @@ function parseNavTools(toolsBlock) {
   };
 }
 
-function buildDesktopItem(item) {
+function isHeadingRole(role) {
+  return role === 'heading' || role === 'break-heading';
+}
+
+function isBreakRole(role) {
+  return role === 'break' || role === 'break-heading';
+}
+
+function groupLinksIntoColumns(links) {
+  const columns = [[]];
+  links.forEach((link, idx) => {
+    if (idx > 0 && isBreakRole(link.role)) columns.push([]);
+    columns[columns.length - 1].push(link);
+  });
+  return columns;
+}
+
+function buildDesktopItem(navItem) {
   const li = document.createElement('li');
   const anchor = document.createElement('a');
-  anchor.href = item.href;
-  anchor.textContent = item.label;
+  anchor.href = navItem.href;
+  anchor.textContent = navItem.label;
   li.append(anchor);
 
-  if (item.links.length === 0) return li;
+  if (navItem.links.length === 0) return li;
 
   li.classList.add('has-dropdown');
   const drop = document.createElement('div');
@@ -77,48 +106,81 @@ function buildDesktopItem(item) {
   const pad = document.createElement('div');
   pad.className = 'd2-pad';
 
-  if (item.bannerPicture) {
+  const linkImage = navItem.links.find((l) => l.picture)?.picture;
+  const hasBannerArea = !!navItem.bannerPicture || !!linkImage;
+  let bannerA = null;
+  let defaultBannerNode = null;
+
+  if (hasBannerArea) {
     const banner = document.createElement('div');
     banner.className = 'd2-banner';
-    const bannerA = document.createElement('a');
+    bannerA = document.createElement('a');
     bannerA.className = 'd2-a';
-    bannerA.href = item.href;
-    bannerA.append(item.bannerPicture);
-    if (item.bannerLabel) {
+    bannerA.href = navItem.href;
+    defaultBannerNode = navItem.bannerPicture || linkImage;
+    if (defaultBannerNode) bannerA.append(defaultBannerNode.cloneNode(true));
+    if (navItem.bannerLabel) {
       const cap = document.createElement('span');
-      cap.textContent = item.bannerLabel;
+      cap.textContent = navItem.bannerLabel;
       bannerA.append(cap);
     }
     banner.append(bannerA);
     pad.append(banner);
   }
 
-  const list = document.createElement('ul');
+  const swapBanner = (picture) => {
+    if (!bannerA || !picture) return;
+    bannerA.querySelectorAll('picture, img').forEach((el) => el.remove());
+    bannerA.prepend(picture.cloneNode(true));
+  };
+  const restoreBanner = () => {
+    if (bannerA && defaultBannerNode) swapBanner(defaultBannerNode);
+  };
+
+  const list = document.createElement('div');
   list.className = 'd2-list';
-  if (!item.bannerPicture) list.classList.add('d2-list-full');
-  item.links.forEach((link) => {
-    const subLi = document.createElement('li');
-    subLi.className = 'd2';
-    const subA = document.createElement('a');
-    subA.href = link.href;
-    subA.textContent = link.text;
-    subA.style.color = '#333';
-    subLi.append(subA);
-    list.append(subLi);
+  if (!hasBannerArea) list.classList.add('d2-list-full');
+
+  const columns = groupLinksIntoColumns(navItem.links);
+  columns.forEach((colLinks) => {
+    const ul = document.createElement('ul');
+    ul.className = 'd2-column';
+    colLinks.forEach((link) => {
+      const row = document.createElement('li');
+      if (isHeadingRole(link.role)) {
+        row.className = 'd2-heading';
+        row.textContent = link.text;
+      } else {
+        row.className = 'd2';
+        const a = document.createElement('a');
+        a.href = link.href || '#';
+        a.textContent = link.text;
+        a.style.color = '#333';
+        if (link.picture) {
+          a.addEventListener('mouseenter', () => swapBanner(link.picture));
+        }
+        row.append(a);
+      }
+      ul.append(row);
+    });
+    list.append(ul);
   });
   pad.append(list);
+
+  if (bannerA) drop.addEventListener('mouseleave', restoreBanner);
+
   drop.append(pad);
   li.append(drop);
   return li;
 }
 
-function buildMobileItem(item) {
+function buildMobileItem(navItem) {
   const li = document.createElement('li');
-  if (item.links.length === 0) {
+  if (navItem.links.length === 0) {
     const a = document.createElement('a');
     a.className = 'mobile-nav-link-plain';
-    a.href = item.href;
-    a.textContent = item.label;
+    a.href = navItem.href;
+    a.textContent = navItem.label;
     li.append(a);
     return li;
   }
@@ -126,16 +188,21 @@ function buildMobileItem(item) {
   const btn = document.createElement('button');
   btn.type = 'button';
   btn.className = 'mobile-nav-link';
-  btn.innerHTML = `<span class="mobile-text">${item.label}</span><span class="chevron"></span>`;
+  btn.innerHTML = `<span class="mobile-text">${navItem.label}</span><span class="chevron"></span>`;
   li.append(btn);
   const sub = document.createElement('ul');
   sub.className = 'mobile-sub';
-  item.links.forEach((link) => {
+  navItem.links.forEach((link) => {
     const subLi = document.createElement('li');
-    const subA = document.createElement('a');
-    subA.href = link.href;
-    subA.textContent = link.text;
-    subLi.append(subA);
+    if (isHeadingRole(link.role)) {
+      subLi.className = 'mobile-sub-heading';
+      subLi.textContent = link.text;
+    } else {
+      const subA = document.createElement('a');
+      subA.href = link.href || '#';
+      subA.textContent = link.text;
+      subLi.append(subA);
+    }
     sub.append(subLi);
   });
   li.append(sub);

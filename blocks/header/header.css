@@ -266,31 +266,42 @@ header:has(.kia-header) {
 
 .d2-list {
   flex: 1;
-  display: block;
-  columns: 3;
-  column-gap: 40px;
+  display: flex;
+  gap: 60px;
   padding: 0;
   margin: 0;
+  list-style: none;
 }
 
-/* When no banner is authored, the list still uses 3 columns but spans full width */
-.d2-list-full {
-  columns: 3;
+.d2-column {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .d2 {
   width: auto;
   padding: 0;
   margin: 0;
-  break-inside: avoid;
   list-style: none;
 }
 
-/* Force 4-3-4 grouping: item 5 starts column 2, item 8 starts column 3.
-   Author-controlled per-item column breaks are a bigger change — flag if you need it. */
-.d2-list .d2:nth-child(5),
-.d2-list .d2:nth-child(8) {
-  break-before: column;
+.d2-heading {
+  padding: 12px 10px 8px;
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #05141f;
+  list-style: none;
+}
+
+.d2-heading:not(:first-child) {
+  margin-top: 18px;
 }
 
 .kia-header .d2-box .d2 a:any-link {
@@ -540,6 +551,15 @@ header:has(.kia-header) {
   padding-left: 0;
   border: 0;
   font-weight: 400;
+}
+
+.mobile-sub li.mobile-sub-heading {
+  padding: 14px 22px 6px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #05141f;
 }
 
 .mobile-sub li a {
