@@ -204,11 +204,17 @@ header:has(.kia-header) {
   visibility: visible;
 }
 
-.dropdown a {
+.dropdown a:any-link {
   display: block;
   padding: 10px 22px;
   font-size: 0.875rem;
+  color: #333;
   transition: background 0.15s, color 0.15s;
+}
+
+.dropdown a:any-link:hover {
+  color: var(--kia-red);
+  text-decoration: none;
 }
 
 /* d2 mega-menu (banner + link list) */
@@ -225,21 +231,21 @@ header:has(.kia-header) {
 }
 
 .d2-pad {
+  display: flex;
+  gap: 60px;
+  align-items: flex-start;
   min-height: 320px;
-  padding-left: 324px;
   padding-bottom: 50px;
-  position: relative;
+  padding-top: 8px;
   margin-left: 5.6641%;
   margin-right: 5.6641%;
 }
 
 .d2-banner {
-  position: absolute;
-  top: 40px;
-  left: 0;
+  flex: 0 0 290px;
 }
 
-.d2-banner .d2-a {
+.d2-box .d2-banner .d2-a:any-link {
   display: block;
   width: 290px;
   position: relative;
@@ -249,6 +255,7 @@ header:has(.kia-header) {
   font-weight: bold;
   letter-spacing: 0.005em;
   font-size: 0.875rem;
+  text-decoration: none;
 }
 
 .d2-a img {
@@ -258,22 +265,46 @@ header:has(.kia-header) {
 }
 
 .d2-list {
-  flex-flow: column wrap;
-  padding-top: 40px;
-  height: 215px;
-  display: flex;
+  flex: 1;
+  display: block;
+  columns: 3;
+  column-gap: 40px;
+  padding: 0;
+  margin: 0;
+}
+
+/* When no banner is authored, the list still uses 3 columns but spans full width */
+.d2-list-full {
+  columns: 3;
 }
 
 .d2 {
   width: auto;
-  padding-left: 0;
-  padding-right: 0;
+  padding: 0;
+  margin: 0;
+  break-inside: avoid;
+  list-style: none;
 }
 
-.d2 a {
+/* Force 4-3-4 grouping: item 5 starts column 2, item 8 starts column 3.
+   Author-controlled per-item column breaks are a bigger change — flag if you need it. */
+.d2-list .d2:nth-child(5),
+.d2-list .d2:nth-child(8) {
+  break-before: column;
+}
+
+.kia-header .d2-box .d2 a:any-link {
+  display: block;
   padding: 8px 10px;
-  color: #666;
+  color: #333;
   font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.kia-header .d2-box .d2 a:any-link:hover {
+  color: var(--kia-red);
+  text-decoration: none;
 }
 
 /* ============ RIGHT ACTIONS ============ */

@@ -95,12 +95,14 @@ function buildDesktopItem(item) {
 
   const list = document.createElement('ul');
   list.className = 'd2-list';
+  if (!item.bannerPicture) list.classList.add('d2-list-full');
   item.links.forEach((link) => {
     const subLi = document.createElement('li');
     subLi.className = 'd2';
     const subA = document.createElement('a');
     subA.href = link.href;
     subA.textContent = link.text;
+    subA.style.color = '#333';
     subLi.append(subA);
     list.append(subLi);
   });
