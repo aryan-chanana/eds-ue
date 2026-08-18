@@ -577,6 +577,21 @@ header:has(.kia-header) {
 .has-sub.open .mobile-sub {
   max-height: 600px;
 }
+.mobile-nav-list li{
+	  max-height:60px;
+	  color: #000;
+}
+
+.mobile-nav-list li.has-sub.open{
+	  max-height: auto;
+}
+ .mobile-nav-link, .mobile-nav-link-plain{
+	  list-style-type: none;
+ }
+ .mobile-nav-link, .mobile-nav-link-plain {
+	  border:0px solid;
+	  background:transparent;
+}
 
 /* ============ RESPONSIVE ============ */
 @media (width <= 1220px) {
