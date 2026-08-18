@@ -606,7 +606,8 @@ a{
   font-weight: 400;
 }
 .primary-nav .has-dropdown .dropdown.d2-box .d2-list .d2-column .d2 a:hover {
-    border-bottom: 2px solid var(--kia-red);
+  width: fit-content;  
+  border-bottom: 2px solid var(--kia-red);
 }
 /* ============ RESPONSIVE ============ */
 @media (width <= 1220px) {
