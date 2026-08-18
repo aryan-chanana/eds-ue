@@ -314,7 +314,7 @@ export default async function decorate(block) {
   leftWrap.append(leftUl);
   
   let svgKia = document.createElement('div');
-  leftWrap.className = 'ci';
+  svgKia.className = 'ci';
   svgKia.innerHTML=`
       <a href="/in/home.html" class="home-link">
         <svg data-name="Kia" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68 34" width="68" height="34" class="svg-ci">
