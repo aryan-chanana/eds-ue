@@ -537,9 +537,7 @@ header:has(.kia-header) {
 }
 
 .mobile-sub li {
-  padding-left: 0;
   border: 0;
-  font-weight: 400;
 }
 
 .mobile-sub li.mobile-sub-heading {
@@ -602,6 +600,10 @@ a{
   padding-left: 8.2667%;
   padding-right: 8.2667%;
   text-transform: uppercase;
+}
+.mobile-sub li {
+  padding-left: 0;
+  font-weight: 400;
 }
 
 /* ============ RESPONSIVE ============ */
