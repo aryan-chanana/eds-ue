@@ -593,6 +593,14 @@ header:has(.kia-header) {
 	  background:transparent;
 }
 
+li{
+  list-style-type: none !important;
+}
+
+a{
+  color: #000 !important;
+}
+
 /* ============ RESPONSIVE ============ */
 @media (width <= 1220px) {
   .primary-nav > div > ul > li > a {

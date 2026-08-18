@@ -259,11 +259,9 @@ export default async function decorate(block) {
   const fragment = await loadFragment(navPath);
   if (!fragment) return;
 
-  const sections = [...fragment.children];
-  const navItemSections = sections.filter((s) => s.querySelector('.nav-item'));
-  const leftItems = (navItemSections[0] ? [...navItemSections[0].querySelectorAll('.nav-item')] : []).map(parseNavItem);
-  const rightItems = navItemSections.slice(1)
-    .flatMap((s) => [...s.querySelectorAll('.nav-item')].map(parseNavItem));
+  const allNavItems = [...fragment.querySelectorAll('.nav-item')].map(parseNavItem);
+  const leftItems = allNavItems.slice(0, 4);
+  const rightItems = allNavItems.slice(4);
   const toolsBlock = fragment.querySelector('.nav-tools');
   const tools = toolsBlock ? parseNavTools(toolsBlock) : null;
 
