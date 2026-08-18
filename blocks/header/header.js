@@ -1,10 +1,6 @@
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 
-const KIA_LOGO_SVG = '<svg class="svg-ci" viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg" aria-label="Kia"><text x="50" y="30" text-anchor="middle" font-family="Manrope, sans-serif" font-weight="900" font-size="32" fill="currentColor">KIA</text></svg>';
-
-const SEARCH_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>';
-
 const CLOSE_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
 
 const LOCATION_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>';
@@ -215,10 +211,6 @@ function initBehavior(root) {
   const mobileNav = root.querySelector('#mobileNav');
   const mobileOverlay = root.querySelector('#mobileOverlay');
   const mobileClose = root.querySelector('#mobileClose');
-  const searchToggle = root.querySelector('#searchToggle');
-  const searchPanel = root.querySelector('#searchPanel');
-  const searchClose = root.querySelector('#searchClose');
-  const searchInput = root.querySelector('#searchInput');
 
   const SCROLL_THRESHOLD = 40;
   const onScroll = () => header.classList.toggle('scrolled', window.scrollY > SCROLL_THRESHOLD);
@@ -252,25 +244,8 @@ function initBehavior(root) {
     });
   });
 
-  const openSearch = () => {
-    searchPanel.classList.add('open');
-    setTimeout(() => searchInput.focus(), 300);
-  };
-  const closeSearch = () => {
-    searchPanel.classList.remove('open');
-    searchInput.value = '';
-  };
-  searchToggle.addEventListener('click', () => {
-    if (searchPanel.classList.contains('open')) closeSearch();
-    else openSearch();
-  });
-  searchClose.addEventListener('click', closeSearch);
-
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      closeMobileNav();
-      closeSearch();
-    }
+    if (e.key === 'Escape') closeMobileNav();
   });
 
   window.addEventListener('resize', () => {
@@ -287,7 +262,8 @@ export default async function decorate(block) {
   const sections = [...fragment.children];
   const navItemSections = sections.filter((s) => s.querySelector('.nav-item'));
   const leftItems = (navItemSections[0] ? [...navItemSections[0].querySelectorAll('.nav-item')] : []).map(parseNavItem);
-  const rightItems = (navItemSections[1] ? [...navItemSections[1].querySelectorAll('.nav-item')] : []).map(parseNavItem);
+  const rightItems = navItemSections.slice(1)
+    .flatMap((s) => [...s.querySelectorAll('.nav-item')].map(parseNavItem));
   const toolsBlock = fragment.querySelector('.nav-tools');
   const tools = toolsBlock ? parseNavTools(toolsBlock) : null;
 
@@ -340,11 +316,6 @@ export default async function decorate(block) {
   leftWrap.append(leftUl);
   primaryNav.append(leftWrap);
 
-  const brandDiv = document.createElement('div');
-  brandDiv.className = 'ci';
-  brandDiv.innerHTML = `<a class="home-link" href="/" aria-label="Kia home">${KIA_LOGO_SVG}</a>`;
-  primaryNav.append(brandDiv);
-
   const rightWrap = document.createElement('div');
   rightWrap.className = 'header-right';
   const rightUl = document.createElement('ul');
@@ -354,37 +325,19 @@ export default async function decorate(block) {
 
   headerInner.append(primaryNav);
 
-  const actions = document.createElement('div');
-  actions.className = 'header-actions';
-  const searchBtn = document.createElement('button');
-  searchBtn.id = 'searchToggle';
-  searchBtn.type = 'button';
-  searchBtn.className = 'icon-btn';
-  searchBtn.setAttribute('aria-label', 'Search');
-  searchBtn.innerHTML = SEARCH_ICON;
-  actions.append(searchBtn);
   if (tools && tools.dealerLabel) {
+    const actions = document.createElement('div');
+    actions.className = 'header-actions';
     const dealerA = document.createElement('a');
     dealerA.className = 'btn-dealer';
     dealerA.href = tools.dealerHref || '#';
     dealerA.innerHTML = `<span class="location-icon" aria-hidden="true">${LOCATION_ICON}</span>${tools.dealerLabel}`;
     actions.append(dealerA);
+    headerInner.append(actions);
   }
-  headerInner.append(actions);
 
   headerMain.append(headerInner);
   header.append(headerMain);
-
-  const searchPanel = document.createElement('div');
-  searchPanel.id = 'searchPanel';
-  searchPanel.className = 'search-panel';
-  searchPanel.innerHTML = `
-    <div class="search-panel-inner">
-      <input id="searchInput" type="text" placeholder="Search" aria-label="Search" />
-      <button id="searchClose" type="button" class="icon-btn" aria-label="Close search">${CLOSE_ICON}</button>
-    </div>
-  `;
-  header.append(searchPanel);
 
   const mobileOverlay = document.createElement('div');
   mobileOverlay.id = 'mobileOverlay';
@@ -396,7 +349,6 @@ export default async function decorate(block) {
   const mobileHeader = document.createElement('div');
   mobileHeader.className = 'mobile-nav-header';
   mobileHeader.innerHTML = `
-    <div class="ci"><a class="home-link" href="/" aria-label="Kia home">${KIA_LOGO_SVG}</a></div>
     <button id="mobileClose" type="button" class="icon-btn" aria-label="Close menu">${CLOSE_ICON}</button>
   `;
   mobileNav.append(mobileHeader);
