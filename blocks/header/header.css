@@ -628,6 +628,9 @@ a{
   color: #000;
 }
 
+.header-right ul li:last-child:before{
+  content: '\E023';
+}
 /* ============ RESPONSIVE ============ */
 @media (width <= 1220px) {
   .primary-nav > div > ul > li > a {
