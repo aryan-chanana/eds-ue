@@ -15,7 +15,7 @@
   overflow: hidden;
   height: 1px;
   width: 1px;
-  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
 }
 
 .floating-menu,
@@ -178,7 +178,7 @@
    ========================================================= */
 .floating-menu [class^='icon-']::before,
 .floating-menu [class*=' icon-']::before {
-  font-family: icon;
+  font-family: icon, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-style: normal;
