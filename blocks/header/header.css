@@ -624,6 +624,10 @@ a{
   border-bottom: 2px solid var(--kia-red);
 }
 
+.mobile-nav-list li a{
+  color: #000;
+}
+
 /* ============ RESPONSIVE ============ */
 @media (width <= 1220px) {
   .primary-nav > div > ul > li > a {
