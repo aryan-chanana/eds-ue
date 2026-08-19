@@ -666,14 +666,46 @@ a{
   display: none;
 }
 
-.mobile-sub .mobile-sub-group {
+.mobile-sub .mobile-sub-group ul li {
   border: 0px solid;
 }
 
+.mobile-sub .mobile-sub-group ul li a {
+  padding : 0px;
+}
 
 /* Show links when second-level heading is clicked */
 .mobile-sub-group.open > .mobile-sub-list {
   display: block;
+}
+
+.mobile-sub-heading {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  padding: 14px 30px 6px 22px;
+}
+
+/* + icon */
+.mobile-sub-heading::after {
+  content: '+';
+  position: absolute;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  line-height: 1;
+  font-weight: 400;
+}
+
+/* − icon when second-level is open */
+.mobile-sub-group.open > .mobile-sub-heading::after {
+  content: '\2212';
 }
 /* ============ RESPONSIVE ============ */
 @media (width <= 1220px) {
