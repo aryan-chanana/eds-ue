@@ -647,11 +647,17 @@ a{
   background-size: contain;
   background-repeat: no-repeat; */
 }
-.header-right > ul >  li:nth-child(2)::before{
+.header-right > ul > li:nth-child(2) {
+  position: relative;
+}
+
+.header-right > ul > li:nth-child(2)::after {
   content: '';
   position: absolute;
+  right: 0;
+  top: 25px;
+  height: 30px;
   border-right: 1px solid #585050;
-  top:25px;
 }
 
 /* First level */
