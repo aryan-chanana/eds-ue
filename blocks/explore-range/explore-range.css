@@ -167,7 +167,9 @@ main > .section > .explore-range-wrapper{
   gap: 12px;
 }
 
-.explore-range a.explore-range-card-cta.button {
+.explore-range a.explore-range-card-cta.button,
+.explore-range a.explore-range-card-cta.button:any-link,
+.explore-range a.explore-range-card-cta.button:visited {
   display: inline-block;
   text-decoration: none;
   font-family: inherit;
@@ -186,6 +188,8 @@ main > .section > .explore-range-wrapper{
 .explore-range a.explore-range-card-cta.button:hover,
 .explore-range a.explore-range-card-cta.button:focus-visible {
   background-color: #1a2b38;
+  color: #fff;
+  text-decoration: none;
   outline: none;
 }
 

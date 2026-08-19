@@ -21,6 +21,7 @@ function decorateCta(anchor, variant) {
   if (!label || !href) return null;
   anchor.className = `explore-range-card-cta explore-range-card-cta-${variant} button`;
   anchor.textContent = label;
+  anchor.style.color = '#fff';
   return anchor;
 }
 
