@@ -575,7 +575,7 @@ header:has(.kia-header) {
 }
 
 .has-sub.open .mobile-sub {
-  max-height: 600px;
+  max-height: fit-content;
 }
 
 .mobile-nav-list li{
@@ -630,6 +630,46 @@ a{
 
 .header-right ul li:last-child:before{
   content: '\E023';
+}
+
+/* First level */
+.mobile-nav-list > .has-sub > .mobile-sub {
+  display: none;
+}
+
+/* First level opened */
+.mobile-nav-list > .has-sub.open > .mobile-sub {
+  display: block;
+}
+
+
+/* Second level groups */
+.mobile-sub-group {
+  list-style: none;
+}
+
+
+/* Second-level heading */
+.mobile-sub-heading {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+
+/* Hide links by default */
+.mobile-sub-list {
+  display: none;
+}
+
+
+/* Show links when second-level heading is clicked */
+.mobile-sub-group.open > .mobile-sub-list {
+  display: block;
 }
 /* ============ RESPONSIVE ============ */
 @media (width <= 1220px) {

@@ -172,6 +172,7 @@ function buildDesktopItem(navItem) {
 
 function buildMobileItem(navItem) {
   const li = document.createElement('li');
+
   if (navItem.links.length === 0) {
     const a = document.createElement('a');
     a.className = 'mobile-nav-link-plain';
@@ -180,28 +181,76 @@ function buildMobileItem(navItem) {
     li.append(a);
     return li;
   }
+
+  // First level: Owners
   li.className = 'has-sub';
+
   const btn = document.createElement('button');
   btn.type = 'button';
   btn.className = 'mobile-nav-link';
-  btn.innerHTML = `<span class="mobile-text">${navItem.label}</span><span class="chevron"></span>`;
+  btn.innerHTML = `
+    <span class="mobile-text">${navItem.label}</span>
+    <span class="chevron"></span>
+  `;
+
   li.append(btn);
+
   const sub = document.createElement('ul');
   sub.className = 'mobile-sub';
+
+  let currentGroup = null;
+
   navItem.links.forEach((link) => {
-    const subLi = document.createElement('li');
+    // Second-level heading
     if (isHeadingRole(link.role)) {
-      subLi.className = 'mobile-sub-heading';
-      subLi.textContent = link.text;
-    } else {
-      const subA = document.createElement('a');
-      subA.href = link.href || '#';
-      subA.textContent = link.text;
-      subLi.append(subA);
+      const headingLi = document.createElement('li');
+      headingLi.className = 'mobile-sub-group';
+
+      const headingBtn = document.createElement('button');
+      headingBtn.type = 'button';
+      headingBtn.className = 'mobile-sub-heading';
+      headingBtn.innerHTML = `
+        <span>${link.text}</span>
+        <span class="chevron"></span>
+      `;
+
+      // Links belonging to this heading
+      const groupList = document.createElement('ul');
+      groupList.className = 'mobile-sub-list';
+
+      headingLi.append(headingBtn, groupList);
+      sub.append(headingLi);
+
+      currentGroup = groupList;
+
+      // Second-level heading click
+      headingBtn.addEventListener('click', () => {
+        headingLi.classList.toggle('open');
+      });
+
+      return;
     }
-    sub.append(subLi);
+
+    // Normal link
+    const subLi = document.createElement('li');
+
+    const subA = document.createElement('a');
+    subA.href = link.href || '#';
+    subA.textContent = link.text;
+
+    subLi.append(subA);
+
+    // Put link inside the current heading's group
+    if (currentGroup) {
+      currentGroup.append(subLi);
+    } else {
+      // Fallback if a link appears before the first heading
+      sub.append(subLi);
+    }
   });
+
   li.append(sub);
+
   return li;
 }
 
