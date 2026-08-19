@@ -579,7 +579,7 @@ header:has(.kia-header) {
 }
 
 .mobile-nav-list li{
-	  max-height:60px;
+	  max-height:fit-content;
 	  color: #000;
 }
 
@@ -664,6 +664,10 @@ a{
 /* Hide links by default */
 .mobile-sub-list {
   display: none;
+}
+
+.mobile-sub .mobile-sub-group {
+  border: 0px solid;
 }
 
 
