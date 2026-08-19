@@ -1,14 +1,14 @@
 {
   "definitions": [
     {
-      "title": "Cookies Banner",
+      "title": "Cookies",
       "id": "cookies",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block",
             "template": {
-              "name": "Cookies Banner",
+              "name": "Cookies",
               "model": "cookies"
             }
           }
