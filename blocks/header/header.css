@@ -224,14 +224,14 @@ header:has(.kia-header) {
   border-bottom: 1px solid rgb(0 0 0 / 20%);
   background-color: #fff;
   padding: 31px 0 40px;
+  padding-bottom: 0px;
 }
 
 .d2-pad {
   display: flex;
   gap: 60px;
   align-items: flex-start;
-  min-height: 320px;
-  padding-bottom: 50px;
+  padding-bottom: 10px;
   padding-top: 8px;
   margin-left: 5.6641%;
   margin-right: 5.6641%;
