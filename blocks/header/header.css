@@ -647,6 +647,12 @@ a{
   background-size: contain;
   background-repeat: no-repeat; */
 }
+.header-right > ul >  li:nth-child(2)::before{
+  content: '';
+  position: absolute;
+  border-right: 1px solid #585050;
+  top:25px;
+}
 
 /* First level */
 .mobile-nav-list > .has-sub > .mobile-sub {
