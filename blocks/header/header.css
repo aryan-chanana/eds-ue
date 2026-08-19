@@ -597,7 +597,7 @@ li{
 }
 
 a{
-  color: #000 !important;
+  color: #000;
 }
 .mobile-nav-list li {
   border-bottom: 1px solid rgb(0 0 0 / 10%);
