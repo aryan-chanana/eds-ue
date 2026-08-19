@@ -62,6 +62,7 @@ header:has(.kia-header) {
   color: #000;
   transition: box-shadow 0.25s var(--kia-ease);
 }
+
 .kia-header.scrolled{
   background-color: #fff;
 }
@@ -227,7 +228,7 @@ header:has(.kia-header) {
   border-bottom: 1px solid rgb(0 0 0 / 20%);
   background-color: #fff;
   padding: 31px 0 40px;
-  padding-bottom: 0px;
+  padding-bottom: 0;
 }
 
 .d2-pad {
