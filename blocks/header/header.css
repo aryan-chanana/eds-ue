@@ -637,7 +637,7 @@ a{
   color: #000;
 }
 
-.header-right ul li:last-child:before{
+.header-right > ul >  li:last-child:before{
   content: '\E023';
   position: absolute;
   top:25px;
