@@ -639,6 +639,8 @@ a{
 
 .header-right ul li:last-child:before{
   content: '\E023';
+  position: absolute;
+  top:25px;
 }
 
 /* First level */
