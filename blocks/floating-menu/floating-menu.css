@@ -4,7 +4,7 @@
    Floating Menu — Kia India header clone
    ========================================================= */
 @font-face {
-  font-family: 'icon';
+  font-family: icon;
   src: url('/icon.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
@@ -178,7 +178,7 @@
    ========================================================= */
 .floating-menu [class^='icon-']::before,
 .floating-menu [class*=' icon-']::before {
-  font-family: 'icon';
+  font-family: icon;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-style: normal;

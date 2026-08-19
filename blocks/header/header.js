@@ -312,10 +312,10 @@ export default async function decorate(block) {
   const leftUl = document.createElement('ul');
   leftItems.forEach((it) => leftUl.append(buildDesktopItem(it)));
   leftWrap.append(leftUl);
-  
-  let svgKia = document.createElement('div');
+
+  const svgKia = document.createElement('div');
   svgKia.className = 'ci';
-  svgKia.innerHTML=`
+  svgKia.innerHTML = `
       <a href="/in/home.html" class="home-link">
         <svg data-name="Kia" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68 34" width="68" height="34" class="svg-ci">
 

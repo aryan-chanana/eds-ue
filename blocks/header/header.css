@@ -540,7 +540,7 @@ header:has(.kia-header) {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s var(--kia-ease);
-  padding-left: 0px;
+  padding-left: 0;
 }
 
 .mobile-sub li {
@@ -561,7 +561,7 @@ header:has(.kia-header) {
   font-size: 1rem;
   color: #000;
   display: block;
-  padding-left: 0px;
+  padding-left: 0;
 }
 
 .mobile-nav-list li.has-sub.open {
@@ -576,6 +576,7 @@ header:has(.kia-header) {
 .has-sub.open .mobile-sub {
   max-height: 600px;
 }
+
 .mobile-nav-list li{
 	  max-height:60px;
 	  color: #000;
@@ -584,11 +585,13 @@ header:has(.kia-header) {
 .mobile-nav-list li.has-sub.open{
 	  max-height: fit-content;
 }
+
  .mobile-nav-link, .mobile-nav-link-plain{
 	  list-style-type: none;
  }
+
  .mobile-nav-link, .mobile-nav-link-plain {
-	  border:0px solid;
+	  border:0 solid;
 	  background:transparent;
 }
 
@@ -599,6 +602,7 @@ li{
 a{
   color: #000 !important;
 }
+
 .mobile-nav-list li {
   border-bottom: 1px solid rgb(0 0 0 / 10%);
   font-size: 1.125rem;
@@ -608,14 +612,17 @@ a{
   padding-right: 8.2667%;
   text-transform: uppercase;
 }
+
 .mobile-sub li {
   padding-left: 0;
   font-weight: 400;
 }
+
 .primary-nav .has-dropdown .dropdown.d2-box .d2-list .d2-column .d2 a:hover {
   width: fit-content;  
   border-bottom: 2px solid var(--kia-red);
 }
+
 /* ============ RESPONSIVE ============ */
 @media (width <= 1220px) {
   .primary-nav > div > ul > li > a {
