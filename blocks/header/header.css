@@ -718,6 +718,13 @@ a{
 .mobile-sub-group.open > .mobile-sub-heading::after {
   content: '\2212';
 }
+
+.mobile-location-div{
+  display:none;
+  position: absolute;
+    right: 20px;
+    top: 20px;
+  }
 /* ============ RESPONSIVE ============ */
 @media (width <= 1220px) {
   .primary-nav > div > ul > li > a {
@@ -729,6 +736,9 @@ a{
   .primary-nav {
     display: none;
   }
+  .mobile-location-div{
+  display:block;
+  }
 
   .menu-toggle {
     display: flex;
@@ -738,6 +748,7 @@ a{
     padding: 0 16px;
     gap: 16px;
     justify-content: space-between;
+    position: relative;
   }
 
   .btn-dealer {
