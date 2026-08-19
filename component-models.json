@@ -180,6 +180,25 @@
     ]
   },
   {
+    "id": "cookies",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "content",
+        "label": "Content",
+        "description": "The banner copy. Type the heading (as H2/H3), the description paragraph, and a Find-out-more link on its own line. Anything the author writes here renders on the left side of the banner.",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "buttonLabel",
+        "label": "Button Label",
+        "description": "Label for the accept-and-close button (e.g. Accept & Close).",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
     "id": "explore-range",
     "fields": [
       {
