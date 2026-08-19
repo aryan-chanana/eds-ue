@@ -58,9 +58,12 @@ header:has(.kia-header) {
   left: 0;
   right: 0;
   z-index: 1000;
-  background-color: #fff;
+  background-color: transparent;
   color: #000;
   transition: box-shadow 0.25s var(--kia-ease);
+}
+.kia-header.scrolled{
+  background-color: #fff;
 }
 
 .kia-header::before {
