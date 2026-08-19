@@ -1,0 +1,107 @@
+/* Cookies consent banner — fixed to the bottom of the viewport, above page content. */
+
+.cookies-wrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1100;
+  pointer-events: none;
+}
+
+.cookies.block {
+  visibility: hidden;
+  pointer-events: auto;
+  background-color: #fff;
+  color: #05141f;
+  box-shadow: 0 -6px 24px rgb(0 0 0 / 12%);
+  padding: 32px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  font-family: Manrope, sans-serif;
+}
+
+.cookies.block.cookies-ready {
+  visibility: visible;
+}
+
+.cookies-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.cookies-content > :first-child {
+  margin-top: 0;
+}
+
+.cookies-content > :last-child {
+  margin-bottom: 0;
+}
+
+.cookies-content h1,
+.cookies-content h2,
+.cookies-content h3,
+.cookies-content h4 {
+  margin: 0 0 8px;
+  font-family: inherit;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #05141f;
+}
+
+.cookies-content p {
+  margin: 0 0 8px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+}
+
+.cookies-content a:any-link {
+  color: #05141f;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.cookies-content a:any-link:hover {
+  color: #05141f;
+  text-decoration: underline;
+}
+
+.cookies-accept {
+  flex-shrink: 0;
+  background-color: #05141f;
+  color: #fff;
+  border: 0;
+  border-radius: 0;
+  padding: 18px 40px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.25s ease;
+}
+
+.cookies-accept:hover,
+.cookies-accept:focus-visible {
+  background-color: #1a2b38;
+  outline: none;
+}
+
+@media (width <= 768px) {
+  .cookies.block {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 24px 20px;
+    gap: 20px;
+  }
+
+  .cookies-accept {
+    width: 100%;
+  }
+}
