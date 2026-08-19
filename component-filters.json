@@ -50,6 +50,12 @@
     ]
   },
   {
+    "id": "floating-menu",
+    "components": [
+      "floating-menu-item"
+    ]
+  },
+  {
     "id": "nav-item",
     "components": [
       "nav-link"

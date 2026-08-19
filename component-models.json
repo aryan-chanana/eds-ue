@@ -231,6 +231,39 @@
     ]
   },
   {
+    "id": "floating-menu",
+    "fields": []
+  },
+  {
+    "id": "floating-menu-item",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "text",
+        "label": "Item Text",
+        "value": "",
+        "required": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "icon",
+        "label": "Icon Code",
+        "description": "CSS icon class used for the ::before content, e.g. icon-handle, icon-schedule, icon-brochure, icon-chat, icon-vehicle-solid",
+        "value": ""
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "link",
+        "label": "Link URL",
+        "value": "",
+        "required": true
+      }
+    ]
+  },
+  {
     "id": "fragment",
     "fields": [
       {
