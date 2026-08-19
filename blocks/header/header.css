@@ -4,15 +4,17 @@
    Kia India — Header
    ========================================================= */
     @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
+
     /* =========================================================
    Kia India — Header Clone
    ========================================================= */
 @font-face {
-  font-family: 'icon';
+  font-family: icon;
   src: url('../../styles/icon.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
 }
+
 :root {
   --kia-black: #05141f;
   --kia-header-h: 80px;
@@ -637,7 +639,7 @@ a{
   color: #000;
 }
 
-.header-right > ul >  li:last-child:before{
+.header-right > ul >  li:last-child::before{
   content: '\E023';
   position: absolute;
   top:25px;
@@ -678,11 +680,11 @@ a{
 }
 
 .mobile-sub .mobile-sub-group ul li {
-  border: 0px solid;
+  border: 0 solid;
 }
 
 .mobile-sub .mobile-sub-group ul li a {
-  padding : 0px;
+  padding : 0;
 }
 
 /* Show links when second-level heading is clicked */
@@ -718,6 +720,7 @@ a{
 .mobile-sub-group.open > .mobile-sub-heading::after {
   content: '\2212';
 }
+
 /* ============ RESPONSIVE ============ */
 @media (width <= 1220px) {
   .primary-nav > div > ul > li > a {

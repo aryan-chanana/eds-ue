@@ -60,5 +60,12 @@ export default function decorate(block) {
   });
 
   block.append(content, button);
+
+  // Hoist the block out of its authored section and pin it to <body>.
+  // Guarantees position:fixed anchors to the viewport, above every other block.
+  const wrapper = block.closest('.cookies-wrapper');
+  if (wrapper) wrapper.remove();
+  document.body.append(block);
+
   block.classList.add('cookies-ready');
 }

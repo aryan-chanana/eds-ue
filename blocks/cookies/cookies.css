@@ -1,21 +1,16 @@
-/* Cookies consent banner — fixed to the bottom of the viewport, above page content. */
+/* Cookies consent banner — pinned to viewport bottom, above all page content. */
 
-.cookies-wrapper {
+.cookies.block {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
   z-index: 1100;
-  pointer-events: none;
-}
-
-.cookies.block {
   visibility: hidden;
-  pointer-events: auto;
   background-color: #fff;
   color: #05141f;
   box-shadow: 0 -6px 24px rgb(0 0 0 / 12%);
-  padding: 32px 40px;
+  padding: 24px 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -27,59 +22,60 @@
   visibility: visible;
 }
 
-.cookies-content {
-  flex: 1;
+.cookies.block .cookies-content {
+  flex: 1 1 auto;
   min-width: 0;
 }
 
-.cookies-content > :first-child {
+.cookies.block .cookies-content > :first-child {
   margin-top: 0;
 }
 
-.cookies-content > :last-child {
+.cookies.block .cookies-content > :last-child {
   margin-bottom: 0;
 }
 
-.cookies-content h1,
-.cookies-content h2,
-.cookies-content h3,
-.cookies-content h4 {
-  margin: 0 0 8px;
+.cookies.block .cookies-content h1,
+.cookies.block .cookies-content h2,
+.cookies.block .cookies-content h3,
+.cookies.block .cookies-content h4 {
+  margin: 0 0 6px;
   font-family: inherit;
-  font-size: 22px;
+  font-size: 16px;
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1.25;
   color: #05141f;
 }
 
-.cookies-content p {
-  margin: 0 0 8px;
-  font-size: 14px;
+.cookies.block .cookies-content p {
+  margin: 0 0 4px;
+  font-size: 13px;
+  font-weight: 400;
   line-height: 1.5;
-  color: #333;
+  color: #555;
 }
 
-.cookies-content a:any-link {
+.cookies.block .cookies-content a:any-link {
   color: #05141f;
-  font-weight: 600;
+  font-weight: 500;
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 
-.cookies-content a:any-link:hover {
+.cookies.block .cookies-content a:any-link:hover {
   color: #05141f;
   text-decoration: underline;
 }
 
-.cookies-accept {
-  flex-shrink: 0;
+.cookies.block .cookies-accept {
+  flex: 0 0 auto;
   background-color: #05141f;
   color: #fff;
   border: 0;
   border-radius: 0;
-  padding: 18px 40px;
+  padding: 14px 36px;
   font-family: inherit;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.02em;
   cursor: pointer;
@@ -87,8 +83,8 @@
   transition: background-color 0.25s ease;
 }
 
-.cookies-accept:hover,
-.cookies-accept:focus-visible {
+.cookies.block .cookies-accept:hover,
+.cookies.block .cookies-accept:focus-visible {
   background-color: #1a2b38;
   outline: none;
 }
@@ -97,11 +93,11 @@
   .cookies.block {
     flex-direction: column;
     align-items: stretch;
-    padding: 24px 20px;
-    gap: 20px;
+    padding: 20px;
+    gap: 16px;
   }
 
-  .cookies-accept {
+  .cookies.block .cookies-accept {
     width: 100%;
   }
 }
