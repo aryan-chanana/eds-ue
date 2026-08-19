@@ -4,15 +4,17 @@
    Kia India — Header
    ========================================================= */
     @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
+
     /* =========================================================
    Kia India — Header Clone
    ========================================================= */
 @font-face {
-  font-family: 'icon';
+  font-family: icon;
   src: url('../../styles/icon.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
 }
+
 :root {
   --kia-black: #05141f;
   --kia-header-h: 80px;
@@ -637,7 +639,7 @@ a{
   color: #000;
 }
 
-.header-right > ul >  li:last-child:before{
+.header-right > ul >  li:last-child::before{
   content: '\E023';
   position: absolute;
   top:25px;
@@ -681,11 +683,11 @@ a{
 }
 
 .mobile-sub .mobile-sub-group ul li {
-  border: 0px solid;
+  border: 0 solid;
 }
 
 .mobile-sub .mobile-sub-group ul li a {
-  padding : 0px;
+  padding : 0;
 }
 
 /* Show links when second-level heading is clicked */
@@ -729,8 +731,8 @@ a{
     top: 20px;
   }
 
-  .header-right > ul >  li:last-child:before, .icon-base-pseudo, .icon-all-wheel-drive:before, .icon-arrow-next:before, .icon-arrow-prev:before, .icon-badge:before, .icon-blank-link:before, .icon-brochure:before, .icon-calculator-linear-large:before, .icon-calculator-linear:before, .icon-calculator-solid:before, .icon-chat-bot:before, .icon-chat:before, .icon-check:before, .icon-checkbox-checked:before, .icon-checkbox-unchecked:before, .icon-close:before, .icon-college:before, .icon-consult:before, .icon-daytime:before, .icon-docs:before, .icon-down:before, .icon-email-linear:before, .icon-email-solid:before, .icon-facebook:before, .icon-filter:before, .icon-finance:before, .icon-flag:before, .icon-gift:before, .icon-handle:before, .icon-heart:before, .icon-indoor:before, .icon-information:before, .icon-instagram:before, .icon-leaf:before, .icon-lightning:before, .icon-location:before, .icon-map:before, .icon-menu:before, .icon-next:before, .icon-night:before, .icon-pause:before, .icon-pinterest:before, .icon-play:before, .icon-plus:before, .icon-pointer:before, .icon-prev:before, .icon-print-linear:before, .icon-print-solid:before, .icon-quotation:before, .icon-radio-checked:before, .icon-radio-unchecked:before, .icon-rain:before, .icon-refresh:before, .icon-rotation:before, .icon-schedule:before, .icon-search:before, .icon-seat:before, .icon-slide:before, .icon-snow:before, .icon-sound-loud:before, .icon-sound-quiet:before, .icon-star-linear:before, .icon-star-solid:before, .icon-tag:before, .icon-tel:before, .icon-time:before, .icon-tool:before, .icon-twitter:before, .icon-up:before, .icon-vehicle-linear:before, .icon-vehicle-solid:before, .icon-youtube:before, .noti-information:before, .swiper-button-prev:before, .swiper-container-rtl .swiper-button-next:before, .swiper-button-next:before, .swiper-container-rtl .swiper-button-prev:before, .ui-selectmenu-icon:after, .ui-selectmenu-menu .ui-menu .ui-state-focus:before, .ui-selectmenu-menu .ui-menu .ui-state-active:before, .schedule-prev:before, .schedule-next:before, .schedule-label .label-text:after, .input-cta .cta-pad:before, .error-message--info:before, .radio [type=radio] + .label-text:before, .radio [type=radio] + .label-text:after, .checkbox [type=checkbox] + .label-text:before, .checkbox [type=checkbox] + .label-text:after, .btn-r--close .pad:before, .btn-r--prev .pad:before, .btn-r--next .pad:before, .btn-r-prev:before, .btn-r-next:after, .btn-r-facebook:before, .btn-r-twitter:before, .btn-r-instagram:before, .link--push:after, .link-back:before, .video-link .video-cover:after, .pagination .prev:before, .pagination .next:before, .swatch.is-active:after, .thumbs-gallery-list .swiper-slide-thumb-active .video-cover:after, .thumbs-gallery-list .swiper-slide-thumb-active .img-box:after, .specs-list > li .title:before, .specs-inner-list > li.has-content .specs-inner-title:before, .accordion-title:before, .accordion-title.is-active:before {
-    font-family: 'icon';
+  .header-right > ul >  li:last-child::before, .icon-base-pseudo, .icon-all-wheel-drive::before, .icon-arrow-next::before, .icon-arrow-prev::before, .icon-badge::before, .icon-blank-link::before, .icon-brochure::before, .icon-calculator-linear-large::before, .icon-calculator-linear::before, .icon-calculator-solid::before, .icon-chat-bot::before, .icon-chat::before, .icon-check::before, .icon-checkbox-checked::before, .icon-checkbox-unchecked::before, .icon-close::before, .icon-college::before, .icon-consult::before, .icon-daytime::before, .icon-docs::before, .icon-down::before, .icon-email-linear::before, .icon-email-solid::before, .icon-facebook::before, .icon-filter::before, .icon-finance::before, .icon-flag::before, .icon-gift::before, .icon-handle::before, .icon-heart::before, .icon-indoor::before, .icon-information::before, .icon-instagram::before, .icon-leaf::before, .icon-lightning::before, .icon-location::before, .icon-map::before, .icon-menu::before, .icon-next::before, .icon-night::before, .icon-pause::before, .icon-pinterest::before, .icon-play::before, .icon-plus::before, .icon-pointer::before, .icon-prev::before, .icon-print-linear::before, .icon-print-solid::before, .icon-quotation::before, .icon-radio-checked::before, .icon-radio-unchecked::before, .icon-rain::before, .icon-refresh::before, .icon-rotation::before, .icon-schedule::before, .icon-search::before, .icon-seat::before, .icon-slide::before, .icon-snow::before, .icon-sound-loud::before, .icon-sound-quiet::before, .icon-star-linear::before, .icon-star-solid::before, .icon-tag::before, .icon-tel::before, .icon-time::before, .icon-tool::before, .icon-twitter::before, .icon-up::before, .icon-vehicle-linear::before, .icon-vehicle-solid::before, .icon-youtube::before, .noti-information::before, .swiper-button-prev::before, .swiper-container-rtl .swiper-button-next::before, .swiper-button-next::before, .swiper-container-rtl .swiper-button-prev::before, .ui-selectmenu-icon::after, .ui-selectmenu-menu .ui-menu .ui-state-focus::before, .ui-selectmenu-menu .ui-menu .ui-state-active::before, .schedule-prev::before, .schedule-next::before, .schedule-label .label-text::after, .input-cta .cta-pad::before, .error-message--info::before, .radio [type="radio"] + .label-text::before, .radio [type="radio"] + .label-text::after, .checkbox [type="checkbox"] + .label-text::before, .checkbox [type="checkbox"] + .label-text::after, .btn-r--close .pad::before, .btn-r--prev .pad::before, .btn-r--next .pad::before, .btn-r-prev::before, .btn-r-next::after, .btn-r-facebook::before, .btn-r-twitter::before, .btn-r-instagram::before, .link--push::after, .link-back::before, .video-link .video-cover::after, .pagination .prev::before, .pagination .next::before, .swatch.is-active::after, .thumbs-gallery-list .swiper-slide-thumb-active .video-cover::after, .thumbs-gallery-list .swiper-slide-thumb-active .img-box::after, .specs-list > li .title::before, .specs-inner-list > li.has-content .specs-inner-title::before, .accordion-title::before, .accordion-title.is-active::before {
+    font-family: icon;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-style: normal;
@@ -739,6 +741,7 @@ a{
     text-decoration: none;
     text-transform: none;
 }
+
 /* ============ RESPONSIVE ============ */
 @media (width <= 1220px) {
   .primary-nav > div > ul > li > a {
@@ -750,6 +753,7 @@ a{
   .primary-nav {
     display: none;
   }
+
   .mobile-location-div{
   display:block;
   }
